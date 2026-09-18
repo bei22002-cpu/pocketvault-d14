@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nereid · Interface Catalog Rev A</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Sora:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #e7f0f2;
+      --muted: #8aa0a8;
+      --dim: #5c727a;
+      --line: rgba(231, 240, 242, 0.12);
+      --accent: #2ec4a8;
+      --accent-2: #7ec8e3;
+      --warn: #e2b36a;
+      --bg0: #071116;
+      --bg1: #0c1a22;
+      --panel: rgba(14, 28, 36, 0.72);
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html, body {
+      height: 100%;
+      background: var(--bg0);
+      color: var(--ink);
+      font-family: Sora, system-ui, sans-serif;
+      overflow: hidden;
+    }
+    .deck {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(1200px 700px at 15% -10%, rgba(46, 196, 168, 0.16), transparent 55%),
+        radial-gradient(900px 600px at 100% 20%, rgba(126, 200, 227, 0.1), transparent 50%),
+        linear-gradient(165deg, var(--bg0), var(--bg1) 45%, #08141b);
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: clamp(28px, 5vw, 64px) clamp(28px, 6vw, 80px) 72px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .brand {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 650;
+      font-size: clamp(2.6rem, 7vw, 5.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      max-width: 12ch;
+    }
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    h2 {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 650;
+      font-size: clamp(1.8rem, 4.2vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 18ch;
+      margin-bottom: 16px;
+    }
+    .lede {
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      color: var(--muted);
+      max-width: 42ch;
+      line-height: 1.55;
+    }
+    .row {
+      display: flex;
+      gap: clamp(16px, 3vw, 40px);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(20px, 4vw, 48px);
+      align-items: center;
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      .split { grid-template-columns: 1fr; }
+      .slide { justify-content: flex-start; padding-top: 48px; overflow-y: auto; }
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 36px;
+      width: min(920px, 100%);
+    }
+    @media (max-width: 720px) {
+      .stats { grid-template-columns: 1fr 1fr; }
+    }
+    .stat {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      backdrop-filter: blur(8px);
+      padding: 18px 16px;
+      border-radius: 10px;
+    }
+    .stat b {
+      display: block;
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      color: var(--accent-2);
+      letter-spacing: -0.02em;
+    }
+    .stat span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    .families {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      .families { grid-template-columns: 1fr 1fr; }
+    }
+    .fam {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 18px 16px 20px;
+      border-radius: 10px;
+      min-height: 160px;
+    }
+    .fam .tag {
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .fam h3 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+    }
+    .fam p { color: var(--muted); font-size: 0.86rem; line-height: 1.45; }
+    .fam .ids {
+      margin-top: 14px;
+      color: var(--dim);
+      font-size: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+    .shot {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #050a0d;
+      display: block;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+    }
+    .bullets {
+      list-style: none;
+      margin-top: 22px;
+      display: grid;
+      gap: 12px;
+      max-width: 46ch;
+    }
+    .bullets li {
+      padding-left: 18px;
+      position: relative;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .bullets li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .table-wrap {
+      margin-top: 24px;
+      width: 100%;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    th {
+      color: var(--dim);
+      font-weight: 500;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    td strong { color: var(--ink); font-weight: 600; }
+    tr:last-child td { border-bottom: 0; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+    .pill {
+      border: 1px solid var(--line);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .pill em { color: var(--accent-2); font-style: normal; font-weight: 600; }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #042019;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      width: fit-content;
+    }
+    .cta.secondary {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      margin-left: 10px;
+    }
+    .footer-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      background: rgba(5, 10, 13, 0.72);
+      border-top: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+      z-index: 20;
+      font-size: 0.75rem;
+      color: var(--dim);
+    }
+    .progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 2px;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    .nav-hint kbd {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 1px 6px;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 0.7rem;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+      width: 100%;
+    }
+    @media (max-width: 800px) {
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+    .tile {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--panel);
+    }
+    .tile img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      display: block;
+      background: #050a0d;
+    }
+    .tile .cap { padding: 12px 14px; }
+    .tile .cap strong { display: block; font-size: 0.95rem; margin-bottom: 4px; }
+    .tile .cap span { color: var(--muted); font-size: 0.8rem; }
+    .big-number {
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      color: var(--accent);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .path {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
+    @media (max-width: 800px) {
+      .path { grid-template-columns: 1fr; }
+    }
+    .path .step {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .path .n {
+      color: var(--accent);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .path h3 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+    .path p { color: var(--muted); font-size: 0.9rem; }
+    .centerish { max-width: 900px; }
+  </style>
+</head>
+<body>
+  <div class="deck" id="deck">
+    <!-- 1 Title -->
+    <section class="slide active" data-title="Title">
+      <div class="eyebrow">Nereid Program · Rev A</div>
+      <div class="brand">Nereid</div>
+      <p class="lede" style="margin-top:22px">
+        Eighteen submersible touch-interface designs for a sealed phone —
+        built to the same depth and weight math, different sensing channels.
+      </p>
+      <div class="stats">
+        <div class="stat"><b>18</b><span>Designs · 4 families</span></div>
+        <div class="stat"><b>6–100 m</b><span>Depth range</span></div>
+        <div class="stat"><b>96–205 g</b><span>Weight targets</span></div>
+        <div class="stat"><b>810H</b><span>MIL-STD design basis</span></div>
+      </div>
+    </section>
+
+    <!-- 2 Premise -->
+    <section class="slide" data-title="Premise">
+      <div class="split">
+        <div>
+          <div class="eyebrow">The problem</div>
+          <h2>Phones die in water. Dive computers don’t show your apps.</h2>
+          <p class="lede">
+            Nereid puts a sealed dry-air pocket over the phone’s own screen,
+            with a water-immune sensing layer on the outside. One physics stack —
+            many interfaces.
+          </p>
+          <ul class="bullets">
+            <li>Capacitive touch fails underwater and through gloves</li>
+            <li>Hard cases usually kill the screen as an input surface</li>
+            <li>Mission profiles need different trade-offs: weight, depth, precision, hands-free</li>
+          </ul>
+        </div>
+        <div>
+          <img class="shot" src="assets/A3-skeleton-blueprint.png" alt="Skeleton blueprint" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 Architecture -->
+    <section class="slide" data-title="Architecture">
+      <div class="eyebrow">Shared architecture</div>
+      <h2>Same envelope. Different signal path.</h2>
+      <p class="lede">
+        Every card in the catalog fixes on sensing architecture, construction,
+        a weight budget from material densities, sealing, and the one trade-off
+        that decides whether you’d choose it.
+      </p>
+      <div class="pill-row">
+        <div class="pill"><em>Dry-air pocket</em> over phone glass</div>
+        <div class="pill"><em>Outer sensing</em> water-immune</div>
+        <div class="pill"><em>First-principles</em> weight targets</div>
+        <div class="pill"><em>810H</em> immersion / shock / salt fog goals</div>
+      </div>
+      <div class="grid-3" style="margin-top:32px">
+        <div class="tile">
+          <div class="cap">
+            <strong>Force / strain</strong>
+            <span>Whole window as a load path — Family A</span>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="cap">
+            <strong>Alt. physics</strong>
+            <span>Magnetic, EMR, acoustic, resistive, gap-cap — B</span>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="cap">
+            <strong>No window sense</strong>
+            <span>Keys, puck, IMU, voice — where weight drops — C &amp; D</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Families -->
+    <section class="slide" data-title="Families">
+      <div class="eyebrow">Catalog map</div>
+      <h2>Four families. Eighteen interfaces.</h2>
+      <div class="families">
+        <div class="fam">
+          <div class="tag">A · FORCE</div>
+          <h3>Force-Sensed Rigid</h3>
+          <p>Four corner load cells. Housing material is the design question.</p>
+          <div class="ids">A1 · A2 · A3 · A4</div>
+        </div>
+        <div class="fam">
+          <div class="tag">B · SENSE</div>
+          <h3>Alternative Sensing</h3>
+          <p>Same shell envelope — swap the physics for gloves, precision, or cost.</p>
+          <div class="ids">B5 · B6 · B7 · B8 · B9</div>
+        </div>
+        <div class="fam">
+          <div class="tag">C · CONTROL</div>
+          <h3>Control Surfaces</h3>
+          <p>Window becomes a viewport. Keys, puck, tilt, voice — real weight savings.</p>
+          <div class="ids">C10 · C11 · C12 · C13</div>
+        </div>
+        <div class="fam">
+          <div class="tag">D · MISSION</div>
+          <h3>Non-Rigid &amp; Mission</h3>
+          <p>Packability, 100 m depth, float, torso, wrist nav.</p>
+          <div class="ids">D14 · D15 · D16 · D17 · D18</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 Family A -->
+    <section class="slide" data-title="Family A">
+      <div class="split">
+        <div>
+          <div class="eyebrow">Family A</div>
+          <h2>Force-sensed rigid housings</h2>
+          <ul class="bullets">
+            <li><strong style="color:var(--ink)">A1 Lightline Mg</strong> — lightest full-aperture, 153 g</li>
+            <li><strong style="color:var(--ink)">A2 Carbonshell</strong> — stiffness per gram, RF window</li>
+            <li><strong style="color:var(--ink)">A3 Skeleton</strong> — field-swap window cartridge</li>
+            <li><strong style="color:var(--ink)">A4 Titan-20</strong> — max abuse, spinel, 205 g</li>
+          </ul>
+        </div>
+        <div class="grid-3" style="grid-template-columns:1fr 1fr; margin-top:0">
+          <div class="tile"><img src="assets/A1-lightline-mg-blueprint.png" alt="A1" /><div class="cap"><strong>A1</strong><span>153 g · 6 m</span></div></div>
+          <div class="tile"><img src="assets/A3-skeleton-blueprint.png" alt="A3" /><div class="cap"><strong>A3</strong><span>168 g · 10 m · flagship</span></div></div>
+          <div class="tile"><img src="assets/A2-carbonshell-blueprint.png" alt="A2" /><div class="cap"><strong>A2</strong><span>147 g · CFRP</span></div></div>
+          <div class="tile"><img src="assets/A4-titan-20-blueprint.png" alt="A4" /><div class="cap"><strong>A4</strong><span>205 g · 20 m</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 Family B -->
+    <section class="slide" data-title="Family B">
+      <div class="eyebrow">Family B</div>
+      <h2>Alternative sensing</h2>
+      <p class="lede">Trade resolution or gestures for waterproof magnetics, acoustics, or thirty-year industrial reliability.</p>
+      <div class="grid-3">
+        <div class="tile"><img src="assets/B5-hall-glove-blueprint.png" alt="B5" /><div class="cap"><strong>B5 Hall-Glove</strong><span>Thick gloves · magnetic</span></div></div>
+        <div class="tile"><img src="assets/B6-stylus-emr-blueprint.png" alt="B6" /><div class="cap"><strong>B6 Stylus-EMR</strong><span>Sub-mm precision</span></div></div>
+        <div class="tile"><img src="assets/B8-resistive-hard-blueprint.png" alt="B8" /><div class="cap"><strong>B8 Resistive</strong><span>Ship-first · lowest risk</span></div></div>
+      </div>
+      <div class="pill-row">
+        <div class="pill">B7 Lamb-Wave · <em>clearest aperture</em></div>
+        <div class="pill">B9 Gap-Cap · <em>weeks of standby</em></div>
+      </div>
+    </section>
+
+    <!-- 7 Family C+D -->
+    <section class="slide" data-title="Family C & D">
+      <div class="eyebrow">Families C &amp; D</div>
+      <h2>When the window stops sensing</h2>
+      <div class="grid-3">
+        <div class="tile"><img src="assets/C12-tilt-cursor-blueprint.png" alt="C12" /><div class="cap"><strong>C12 Tilt-Cursor</strong><span>96 g — lightest in catalog</span></div></div>
+        <div class="tile"><img src="assets/D15-oilfill-100-blueprint.png" alt="D15" /><div class="cap"><strong>D15 Oilfill-100</strong><span>100 m — real depth</span></div></div>
+        <div class="tile"><img src="assets/D18-gauntlet-blueprint.png" alt="D18" /><div class="cap"><strong>D18 Gauntlet</strong><span>Wrist nav + mechanical compass</span></div></div>
+      </div>
+      <div class="pill-row">
+        <div class="pill">C10 Crownpad · <em>fewest failure modes</em></div>
+        <div class="pill">C11 Tether-Puck · <em>phone stays stowed</em></div>
+        <div class="pill">C13 Voice-PTT · <em>hands-free</em></div>
+        <div class="pill">D14 Rolltop · <em>packs flat</em></div>
+        <div class="pill">D16 Floatline · <em>won’t sink</em></div>
+        <div class="pill">D17 Chestboard · <em>MOLLE torso</em></div>
+      </div>
+    </section>
+
+    <!-- 8 Comparison -->
+    <section class="slide" data-title="Comparison">
+      <div class="eyebrow">Decision surface</div>
+      <h2>What you’d actually ship first</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Priority</th><th>Pick</th><th>Why</th><th>Weight</th><th>Depth</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Prove the category</td><td><strong>B8 Resistive</strong></td><td>Lowest tech risk &amp; cost</td><td>144 g</td><td>6 m</td></tr>
+            <tr><td>Fielded product</td><td><strong>A3 Skeleton</strong></td><td>Swap scratched glass in under a minute</td><td>168 g</td><td>10 m</td></tr>
+            <tr><td>Minimum mass</td><td><strong>C12 Tilt</strong></td><td>Deletes the sensing stack</td><td>96 g</td><td>6 m</td></tr>
+            <tr><td>Real diving depth</td><td><strong>D15 Oilfill</strong></td><td>Pressure compensation, not thicker walls</td><td>178 g</td><td>100 m</td></tr>
+            <tr><td>Max abuse</td><td><strong>A4 Titan-20</strong></td><td>Spinel + Ti, past standard drop heights</td><td>205 g</td><td>20 m</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 9 Build package -->
+    <section class="slide" data-title="Build package">
+      <div class="split">
+        <div>
+          <div class="eyebrow">Deliverables</div>
+          <h2>The catalog is built — not just written.</h2>
+          <ul class="bullets">
+            <li>18 concept blueprint renders</li>
+            <li>18 printable SVG orthographic sheets</li>
+            <li>56 STL + 56 STEP prototype models</li>
+            <li>BOM, assembly, and print guide per design</li>
+          </ul>
+          <a class="cta" href="index.html">Open interactive catalog</a>
+        </div>
+        <div>
+          <div class="big-number">112</div>
+          <p class="lede" style="margin-top:12px">CAD files ready for FDM / CNC soft tooling — PETG or ASA shells, COTS seals, pressure-test before water.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 Path -->
+    <section class="slide" data-title="Path">
+      <div class="eyebrow">Recommended path</div>
+      <h2>Three moves from catalog to hardware</h2>
+      <div class="path">
+        <div class="step">
+          <div class="n">01</div>
+          <h3>Print B8 + C10</h3>
+          <p>Fastest fit-check shells. Validate seal geometry and phone cavity on the bench.</p>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <h3>Pilot A3</h3>
+          <p>Field-replaceable cartridge is the product story — prove the two-seal interface.</p>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <h3>Gate depth later</h3>
+          <p>Oilfill-100 and Titan-20 only after recreational 6–20 m stack is proven.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 Close -->
+    <section class="slide" data-title="Close">
+      <div class="centerish">
+        <div class="eyebrow">Nereid Program</div>
+        <div class="brand" style="max-width:14ch">Use the phone. Keep it dry.</div>
+        <p class="lede" style="margin-top:22px">
+          Interface Catalog Rev A — engineering targets from first-principles geometry.
+          MIL-STD-810H methods as design goals, not certified results.
+        </p>
+        <div style="margin-top:8px">
+          <a class="cta" href="d14-approval.html">D14 manufacturing approval</a>
+          <a class="cta" href="d15-approval.html">D15 manufacturing approval</a>
+          <a class="cta secondary" href="loved.html">Customer love film</a>
+          <a class="cta secondary" href="demos.html">Tech demos</a>
+          <a class="cta secondary" href="index.html">Browse catalog</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="footer-bar">
+    <div class="progress" id="progress"></div>
+    <div>Nereid · Interface Catalog Rev A</div>
+    <div class="nav-hint">
+      <kbd>←</kbd> <kbd>→</kbd> or click · <kbd>F</kbd> fullscreen ·
+      <span id="counter">1 / 11</span>
+    </div>
+  </div>
+
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    let i = 0;
+
+    function show(n) {
+      i = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
+      document.getElementById("counter").textContent = `${i + 1} / ${slides.length}`;
+      document.getElementById("progress").style.width = `${((i + 1) / slides.length) * 100}%`;
+      history.replaceState(null, "", `#${i + 1}`);
+    }
+
+    function next() { show(i + 1); }
+    function prev() { show(i - 1); }
+
+    document.addEventListener("keydown", (e) => {
+      if (["ArrowRight", "ArrowDown", " ", "PageDown", "Enter"].includes(e.key)) {
+        e.preventDefault();
+        next();
+      } else if (["ArrowLeft", "ArrowUp", "PageUp", "Backspace"].includes(e.key)) {
+        e.preventDefault();
+        prev();
+      } else if (e.key === "Home") show(0);
+      else if (e.key === "End") show(slides.length - 1);
+      else if (e.key === "f" || e.key === "F") {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+        else document.exitFullscreen?.();
+      }
+    });
+
+    document.getElementById("deck").addEventListener("click", (e) => {
+      if (e.target.closest("a")) return;
+      const mid = window.innerWidth / 2;
+      if (e.clientX >= mid) next();
+      else prev();
+    });
+
+    let tx = null;
+    document.addEventListener("touchstart", (e) => { tx = e.changedTouches[0].clientX; }, { passive: true });
+    document.addEventListener("touchend", (e) => {
+      if (tx == null) return;
+      const dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 50) (dx < 0 ? next : prev)();
+      tx = null;
+    }, { passive: true });
+
+    const hash = parseInt(location.hash.replace("#", ""), 10);
+    show(Number.isFinite(hash) && hash >= 1 ? hash - 1 : 0);
+  </script>
+</body>
+</html>

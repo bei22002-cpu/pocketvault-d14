@@ -1,0 +1,41 @@
+{
+  "id": "D15",
+  "name": "Oilfill-100",
+  "kind": "oilfill",
+  "units": "mm",
+  "outer_mm": {
+    "L": 170,
+    "W": 90,
+    "H": 35
+  },
+  "aperture_mm": {
+    "L": 50,
+    "W": 30
+  },
+  "wall_mm": 1.0,
+  "depth_rating_m_design": 100,
+  "phone_cavity_mm": {
+    "L": 147.0,
+    "W": 71.0,
+    "H": 8.0
+  },
+  "parts": {
+    "oil_shell": {
+      "stl": "oil_shell.stl",
+      "step": "oil_shell.step",
+      "volume_mm3": 45675.6
+    },
+    "oil_lid": {
+      "stl": "oil_lid.stl",
+      "step": "oil_lid.step",
+      "volume_mm3": 15300.0
+    }
+  },
+  "print_notes": [
+    "Material for waterproof prototype: PETG or ASA, 100% infill walls, 4+ perimeters",
+    "Coat seam with marine epoxy or silicone after fit-check; O-rings are COTS",
+    "Window blank is dimensional stand-in \u2014 use real glass/PC/spinel from BOM",
+    "Prototype only \u2014 100 m requires PE-rated oil-comp housing, not FDM alone"
+  ],
+  "disclaimer": "Digital prototype geometry. Not certified for immersion. Pressure-test before any water use."
+}

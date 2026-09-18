@@ -1,0 +1,486 @@
+{
+  "program": "Nereid Interface Catalog",
+  "rev": "A",
+  "designs_built": 18,
+  "designs_failed": [],
+  "models": [
+    {
+      "id": "A1",
+      "name": "Lightline-Mg",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 56335.3
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 65534.1
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 15540.0
+        }
+      },
+      "outer_mm": {
+        "L": 168,
+        "W": 88,
+        "H": 26
+      }
+    },
+    {
+      "id": "A2",
+      "name": "Carbonshell",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 53213.3
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 57240.2
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 15540.0
+        }
+      },
+      "outer_mm": {
+        "L": 168,
+        "W": 88,
+        "H": 25
+      }
+    },
+    {
+      "id": "A3",
+      "name": "Skeleton",
+      "parts": {
+        "rib_cage": {
+          "stl": "rib_cage.stl",
+          "step": "rib_cage.step",
+          "volume_mm3": 90547.0
+        },
+        "window_cartridge": {
+          "stl": "window_cartridge.stl",
+          "step": "window_cartridge.step",
+          "volume_mm3": 17135.5
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 38962.6
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 15540.0
+        }
+      },
+      "outer_mm": {
+        "L": 170,
+        "W": 90,
+        "H": 28
+      }
+    },
+    {
+      "id": "A4",
+      "name": "Titan-20",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 88564.4
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 93107.4
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 21841.6
+        }
+      },
+      "outer_mm": {
+        "L": 172,
+        "W": 92,
+        "H": 32
+      }
+    },
+    {
+      "id": "B5",
+      "name": "Hall-Glove",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 53873.3
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 57240.2
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 15540.0
+        }
+      },
+      "outer_mm": {
+        "L": 168,
+        "W": 88,
+        "H": 25
+      }
+    },
+    {
+      "id": "B6",
+      "name": "Stylus-EMR",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 69941.3
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 77396.3
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 15540.0
+        }
+      },
+      "outer_mm": {
+        "L": 168,
+        "W": 92,
+        "H": 28
+      }
+    },
+    {
+      "id": "B7",
+      "name": "Lamb-Wave",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 53873.3
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 57240.2
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 15540.0
+        }
+      },
+      "outer_mm": {
+        "L": 168,
+        "W": 88,
+        "H": 25
+      }
+    },
+    {
+      "id": "B8",
+      "name": "Resistive-Hard",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 56335.3
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 65534.1
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 15540.0
+        }
+      },
+      "outer_mm": {
+        "L": 168,
+        "W": 88,
+        "H": 26
+      }
+    },
+    {
+      "id": "B9",
+      "name": "Gap-Cap",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 56335.3
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 65534.1
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 15540.0
+        }
+      },
+      "outer_mm": {
+        "L": 168,
+        "W": 88,
+        "H": 26
+      }
+    },
+    {
+      "id": "C10",
+      "name": "Crownpad",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 47842.5
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 52417.1
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 9100.0
+        }
+      },
+      "outer_mm": {
+        "L": 165,
+        "W": 86,
+        "H": 24
+      }
+    },
+    {
+      "id": "C11",
+      "name": "Tether-Puck",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 34398.9
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 42150.1
+        },
+        "tether_puck": {
+          "stl": "tether_puck.stl",
+          "step": "tether_puck.step",
+          "volume_mm3": 54725.1
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 8832.0
+        }
+      },
+      "outer_mm": {
+        "L": 160,
+        "W": 84,
+        "H": 22
+      }
+    },
+    {
+      "id": "C12",
+      "name": "Tilt-Cursor",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 31400.4
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 33489.7
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 8432.0
+        }
+      },
+      "outer_mm": {
+        "L": 162,
+        "W": 84,
+        "H": 18
+      }
+    },
+    {
+      "id": "C13",
+      "name": "Voice-PTT",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 41581.6
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 47000.8
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 8832.0
+        }
+      },
+      "outer_mm": {
+        "L": 164,
+        "W": 85,
+        "H": 22
+      }
+    },
+    {
+      "id": "D14",
+      "name": "Rolltop",
+      "parts": {
+        "rigid_bezel": {
+          "stl": "rigid_bezel.stl",
+          "step": "rigid_bezel.step",
+          "volume_mm3": 82096.0
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 15540.0
+        },
+        "fabric_cut_pattern": {
+          "stl": "fabric_cut_pattern.stl",
+          "step": "fabric_cut_pattern.step",
+          "volume_mm3": 14080.0
+        }
+      },
+      "outer_mm": {
+        "L": 175,
+        "W": 95,
+        "H": 40
+      }
+    },
+    {
+      "id": "D15",
+      "name": "Oilfill-100",
+      "parts": {
+        "oil_shell": {
+          "stl": "oil_shell.stl",
+          "step": "oil_shell.step",
+          "volume_mm3": 45675.6
+        },
+        "oil_lid": {
+          "stl": "oil_lid.stl",
+          "step": "oil_lid.step",
+          "volume_mm3": 15300.0
+        }
+      },
+      "outer_mm": {
+        "L": 170,
+        "W": 90,
+        "H": 35
+      }
+    },
+    {
+      "id": "D16",
+      "name": "Floatline",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 56335.3
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 65534.1
+        },
+        "foam_collar": {
+          "stl": "foam_collar.stl",
+          "step": "foam_collar.step",
+          "volume_mm3": 511712.4
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 15540.0
+        }
+      },
+      "outer_mm": {
+        "L": 190,
+        "W": 110,
+        "H": 45
+      }
+    },
+    {
+      "id": "D17",
+      "name": "Chestboard",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 194353.9
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 237714.3
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 15810.0
+        }
+      },
+      "outer_mm": {
+        "L": 200,
+        "W": 120,
+        "H": 28
+      }
+    },
+    {
+      "id": "D18",
+      "name": "Gauntlet",
+      "parts": {
+        "shell_front": {
+          "stl": "shell_front.stl",
+          "step": "shell_front.step",
+          "volume_mm3": 8779.8
+        },
+        "shell_back": {
+          "stl": "shell_back.stl",
+          "step": "shell_back.step",
+          "volume_mm3": 11617.5
+        },
+        "window_blank": {
+          "stl": "window_blank.stl",
+          "step": "window_blank.step",
+          "volume_mm3": 1444.0
+        }
+      },
+      "outer_mm": {
+        "L": 95,
+        "W": 70,
+        "H": 28
+      }
+    }
+  ]
+}

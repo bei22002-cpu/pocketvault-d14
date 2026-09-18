@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D15 Oilfill-100 · Approval Brief</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Sora:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #102024;
+      --muted: #5a6e72;
+      --line: #c5d0d3;
+      --accent: #1a6b5c;
+      --paper: #f3f6f7;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: Sora, system-ui, sans-serif;
+      color: var(--ink);
+      background: #cfd8db;
+      padding: 24px;
+      line-height: 1.4;
+    }
+    .sheet {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--paper);
+      padding: 28px 32px 24px;
+      border: 1px solid #b8c5c9;
+    }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .sheet { border: 0; max-width: none; padding: 12mm; }
+      .noprint { display: none !important; }
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.65rem;
+      letter-spacing: -0.02em;
+    }
+    .meta { color: var(--muted); font-size: 0.78rem; text-align: right; }
+    .ask {
+      background: #e4f0ec;
+      border-left: 4px solid var(--accent);
+      padding: 10px 12px;
+      margin: 12px 0 16px;
+      font-size: 0.92rem;
+    }
+    .ask strong { color: var(--accent); }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .stat {
+      border: 1px solid #c5d0d3;
+      padding: 8px 10px;
+      background: #fff;
+    }
+    .stat b { display: block; font-family: Fraunces, Georgia, serif; font-size: 1.25rem; }
+    .stat span { font-size: 0.68rem; color: var(--muted); }
+    h2 {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin: 14px 0 6px;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    th, td { border-bottom: 1px solid #c5d0d3; padding: 5px 6px; text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .cols { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; }
+    ul { padding-left: 1.1em; font-size: 0.8rem; color: var(--ink); }
+    li { margin: 3px 0; }
+    .foot {
+      margin-top: 14px;
+      padding-top: 8px;
+      border-top: 1px solid #c5d0d3;
+      font-size: 0.7rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .sign {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      font-size: 0.75rem;
+    }
+    .sign div {
+      border-top: 1px solid #102024;
+      padding-top: 6px;
+      min-height: 48px;
+    }
+    .btn {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 8px 12px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <a class="btn noprint" href="d15-approval.html">Open full presentation deck</a>
+  <a class="btn noprint" href="#" onclick="window.print();return false;" style="background:#102024">Print leave-behind</a>
+
+  <article class="sheet">
+    <div class="top">
+      <div>
+        <h1>D15 Oilfill-100 · Manufacturing Approval Brief</h1>
+        <div style="color:var(--muted);font-size:0.8rem;margin-top:4px">Decision packet · one page · bring to the vote</div>
+      </div>
+      <div class="meta">
+        Nereid Program<br />
+        Confidential · Rev A<br />
+        Meeting: manufacturing authorization
+      </div>
+    </div>
+
+    <div class="ask">
+      <strong>MOTION:</strong> Authorize <strong>Phase P1</strong> — CNC bridge housings (5–10), oil fill/bleed station, diaphragm/oil qualification, and hydrostatic proof at 15 bar — budget ceiling <strong>$28,000</strong> (planning midpoint ~$18,000), 6-week go/no-go. Mold steel and inventory require a separate later vote.
+    </div>
+
+    <div class="grid">
+      <div class="stat"><b>100 m</b><span>Design depth</span></div>
+      <div class="stat"><b>15 bar</b><span>Unit proof gate</span></div>
+      <div class="stat"><b>178 g</b><span>Mass target</span></div>
+      <div class="stat"><b>≥3</b><span>Units must pass P1</span></div>
+    </div>
+
+    <div class="cols">
+      <div>
+        <h2>Why D15</h2>
+        <ul>
+          <li>Only catalog design engineered past recreational depth via <strong>oil pressure compensation</strong> (ΔP ≈ 0), not thicker walls.</li>
+          <li>1 mm PPA shell + rolling diaphragm + dielectric silicone oil + ≥40 mL thermal reservoir.</li>
+          <li>Honest trade: phone screen unusable in oil; UI = sealed OLED + physical keys.</li>
+        </ul>
+        <h2>Evidence already in hand</h2>
+        <ul>
+          <li>CAD STEP/STL: <code>models/D15/</code></li>
+          <li>Full BOM, mass stack, 9-phase process, work instructions</li>
+          <li>HQ visuals + product film for training</li>
+        </ul>
+      </div>
+      <div>
+        <h2>P1 success / kill</h2>
+        <ul>
+          <li><strong>Success:</strong> ≥3 units hold 15 bar / 15 min; oil mass logged ±5 g; process sheet signed.</li>
+          <li><strong>Kill:</strong> cannot achieve proof without redesign → stop before mold steel.</li>
+        </ul>
+        <h2>Explicitly not approved by this vote</h2>
+        <ul>
+          <li>Production injection molds</li>
+          <li>100-unit inventory buy</li>
+          <li>Consumer “100 m certified” claims</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Budget ceiling breakdown (bands)</h2>
+    <table>
+      <thead><tr><th>Line</th><th>Band</th></tr></thead>
+      <tbody>
+        <tr><td>CNC housings 5–10 sets</td><td>$2.5k–$6k</td></tr>
+        <tr><td>Diaphragm / valve / seals / oil</td><td>$1k–$2.5k</td></tr>
+        <tr><td>Fill station</td><td>$1k–$3k</td></tr>
+        <tr><td>Hydro access</td><td>$0.8k–$8k</td></tr>
+        <tr><td>Electronics bring-up</td><td>$3k–$8k</td></tr>
+        <tr><td>Labor + contingency</td><td>$1.5k–$4k</td></tr>
+        <tr><td><strong>Ceiling</strong></td><td><strong>$28k</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h2>Top risks &amp; P1 mitigations</h2>
+    <table>
+      <thead><tr><th>Risk</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr><td>Oil vs phone materials</td><td>CoC oil + 30-day sacrificial soak</td></tr>
+        <tr><td>Diaphragm failure</td><td>Stroke cycle + inspect after every proof</td></tr>
+        <tr><td>UX rejection (no phone screen)</td><td>OLED demo gate before P3 tooling</td></tr>
+        <tr><td>Thermal expansion</td><td>Freeze ≥50 mL after measured oil mass</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sign">
+      <div>Approver name / role<br /><span style="color:var(--muted)">Signature</span></div>
+      <div>Date<br /><span style="color:var(--muted)">________ / ________ / ________</span></div>
+      <div>Decision<br />☐ Approve P1 &nbsp; ☐ Hold &nbsp; ☐ Reject</div>
+    </div>
+
+    <div class="foot">
+      <span>Full plan: manufacturing/D15-Oilfill-100-Manufacturing-Plan.md · Deck: d15-approval.html</span>
+      <span>Not a certification filing · Prototype authorization only</span>
+    </div>
+  </article>
+</body>
+</html>

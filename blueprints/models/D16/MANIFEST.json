@@ -1,0 +1,51 @@
+{
+  "id": "D16",
+  "name": "Floatline",
+  "kind": "float",
+  "units": "mm",
+  "outer_mm": {
+    "L": 190,
+    "W": 110,
+    "H": 45
+  },
+  "aperture_mm": {
+    "L": 148,
+    "W": 70
+  },
+  "wall_mm": 1.8,
+  "depth_rating_m_design": 6,
+  "phone_cavity_mm": {
+    "L": 147.0,
+    "W": 71.0,
+    "H": 8.0
+  },
+  "parts": {
+    "shell_front": {
+      "stl": "shell_front.stl",
+      "step": "shell_front.step",
+      "volume_mm3": 56335.3
+    },
+    "shell_back": {
+      "stl": "shell_back.stl",
+      "step": "shell_back.step",
+      "volume_mm3": 65534.1
+    },
+    "foam_collar": {
+      "stl": "foam_collar.stl",
+      "step": "foam_collar.step",
+      "volume_mm3": 511712.4
+    },
+    "window_blank": {
+      "stl": "window_blank.stl",
+      "step": "window_blank.step",
+      "volume_mm3": 15540.0
+    }
+  },
+  "print_notes": [
+    "Material for waterproof prototype: PETG or ASA, 100% infill walls, 4+ perimeters",
+    "Coat seam with marine epoxy or silicone after fit-check; O-rings are COTS",
+    "Window blank is dimensional stand-in \u2014 use real glass/PC/spinel from BOM",
+    "Print collar in lightweight filament or cast syntactic foam into printed mold"
+  ],
+  "disclaimer": "Digital prototype geometry. Not certified for immersion. Pressure-test before any water use."
+}

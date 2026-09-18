@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 670.4 290.8" width="670.4" height="290.8">
+  <rect width="100%" height="100%" fill="#f4f1ea" />
+  <text x="20" y="18" font-size="12" font-weight="600" font-family="sans-serif" fill="#1a1a1a">C11 · TETHER-PUCK</text>
+  <text x="20" y="30" font-size="8" font-family="sans-serif" fill="#666">FRONT ELEVATION — ~2.2 px/mm · Nereid Rev A</text>
+  <rect x="40" y="36" width="352" height="184.8" fill="#fff" stroke="#1a1a1a" stroke-width="1.6" />
+  <rect x="64.19999999999999" y="58" width="303.6" height="140.8" fill="#e8ece8" stroke="#1a1a1a" stroke-width="1.1" />
+  <text x="216" y="128.4" text-anchor="middle" font-size="9" fill="#555" font-family="sans-serif">PC fixed</text>
+  
+  
+    <line x1="40" y1="220.8" x2="40" y2="234.8" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="392" y1="220.8" x2="392" y2="234.8" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="40" y1="234.8" x2="392" y2="234.8" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="216" y="246.8" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">160 mm</text>
+  
+  
+    <line x1="392" y1="36" x2="406" y2="36" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="392" y1="220.8" x2="406" y2="220.8" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="406" y1="36" x2="406" y2="220.8" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="414" y="132.4" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">84 mm</text>
+  
+  
+    <line x1="64.19999999999999" y1="58" x2="64.19999999999999" y2="48" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="367.8" y1="58" x2="367.8" y2="48" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="64.19999999999999" y1="48" x2="367.8" y2="48" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="216" y="44" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">AP 138 mm</text>
+  
+  <text x="462" y="30" font-size="9" font-weight="600" fill="#1a1a1a" font-family="sans-serif">SECTION STACK</text>
+  <rect x="462" y="46" width="48.400000000000006" height="8" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="518.4" y="53" fill="#333" font-size="9" font-family="sans-serif">Shell</text><rect x="462" y="54" width="48.400000000000006" height="4" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="518.4" y="59" fill="#333" font-size="9" font-family="sans-serif">Seal</text><rect x="462" y="58" width="48.400000000000006" height="6.6000000000000005" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="518.4" y="64.3" fill="#333" font-size="9" font-family="sans-serif">Window 1mm</text><rect x="462" y="64.6" width="48.400000000000006" height="14" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="518.4" y="74.6" fill="#333" font-size="9" font-family="sans-serif">Air pocket</text><rect x="462" y="78.6" width="48.400000000000006" height="18" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="518.4" y="90.6" fill="#333" font-size="9" font-family="sans-serif">Phone</text><rect x="462" y="96.6" width="48.400000000000006" height="10" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="518.4" y="104.6" fill="#333" font-size="9" font-family="sans-serif">Back</text>
+  
+    <line x1="462" y1="46" x2="462" y2="38" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="510.4" y1="46" x2="510.4" y2="38" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="462" y1="38" x2="510.4" y2="38" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="486.2" y="34" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">22 mm H</text>
+  
+  <text x="20" y="262.8" font-size="8" fill="#444" font-family="sans-serif">Shell: PPA case + PPA puck · Mount: fixed</text>
+  <text x="20" y="274.8" font-size="8" fill="#444" font-family="sans-serif">Depth 20 m · 140 g · Wired puck</text>
+  <rect x="520.4" y="248.8" width="130" height="30" fill="none" stroke="#1a1a1a" stroke-width="0.8" />
+  <text x="530.4" y="262.8" font-size="8" fill="#1a1a1a" font-family="sans-serif">NEREID PROGRAM</text>
+  <text x="530.4" y="274.8" font-size="8" fill="#1a1a1a" font-family="sans-serif">DWG C11-00 · REV A</text>
+</svg>

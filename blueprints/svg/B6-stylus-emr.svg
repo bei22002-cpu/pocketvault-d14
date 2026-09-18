@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 701.2 308.4" width="701.2" height="308.4">
+  <rect width="100%" height="100%" fill="#f4f1ea" />
+  <text x="20" y="18" font-size="12" font-weight="600" font-family="sans-serif" fill="#1a1a1a">B6 · STYLUS-EMR</text>
+  <text x="20" y="30" font-size="8" font-family="sans-serif" fill="#666">FRONT ELEVATION — ~2.2 px/mm · Nereid Rev A</text>
+  <rect x="40" y="36" width="369.6" height="202.4" fill="#fff" stroke="#1a1a1a" stroke-width="1.6" />
+  <rect x="62" y="60.2" width="325.6" height="154" fill="#e8ece8" stroke="#1a1a1a" stroke-width="1.1" />
+  <text x="224.8" y="137.2" text-anchor="middle" font-size="9" fill="#555" font-family="sans-serif">Glass fixed</text>
+  
+  
+    <line x1="40" y1="238.4" x2="40" y2="252.4" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="409.6" y1="238.4" x2="409.6" y2="252.4" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="40" y1="252.4" x2="409.6" y2="252.4" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="224.8" y="264.4" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">168 mm</text>
+  
+  
+    <line x1="409.6" y1="36" x2="423.6" y2="36" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="409.6" y1="238.4" x2="423.6" y2="238.4" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="423.6" y1="36" x2="423.6" y2="238.4" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="431.6" y="141.2" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">92 mm</text>
+  
+  
+    <line x1="62" y1="60.2" x2="62" y2="50.2" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="387.6" y1="60.2" x2="387.6" y2="50.2" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="62" y1="50.2" x2="387.6" y2="50.2" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="224.8" y="46.2" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">AP 148 mm</text>
+  
+  <text x="479.6" y="30" font-size="9" font-weight="600" fill="#1a1a1a" font-family="sans-serif">SECTION STACK</text>
+  <rect x="479.6" y="46" width="61.60000000000001" height="8" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="549.2" y="53" fill="#333" font-size="9" font-family="sans-serif">Shell</text><rect x="479.6" y="54" width="61.60000000000001" height="4" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="549.2" y="59" fill="#333" font-size="9" font-family="sans-serif">Seal</text><rect x="479.6" y="58" width="61.60000000000001" height="9.9" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="549.2" y="65.95" fill="#333" font-size="9" font-family="sans-serif">Window 1.5mm</text><rect x="479.6" y="67.9" width="61.60000000000001" height="14" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="549.2" y="77.9" fill="#333" font-size="9" font-family="sans-serif">Air pocket</text><rect x="479.6" y="81.9" width="61.60000000000001" height="18" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="549.2" y="93.9" fill="#333" font-size="9" font-family="sans-serif">Phone</text><rect x="479.6" y="99.9" width="61.60000000000001" height="10" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="549.2" y="107.9" fill="#333" font-size="9" font-family="sans-serif">Back</text>
+  
+    <line x1="479.6" y1="46" x2="479.6" y2="38" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="541.2" y1="46" x2="541.2" y2="38" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="479.6" y1="38" x2="541.2" y2="38" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="510.40000000000003" y="34" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">28 mm H</text>
+  
+  <text x="20" y="280.4" font-size="8" fill="#444" font-family="sans-serif">Shell: AZ91D Mg + PEO · Mount: rigid</text>
+  <text x="20" y="292.4" font-size="8" fill="#444" font-family="sans-serif">Depth 6 m · 156 g · Resonant</text>
+  <rect x="551.2" y="266.4" width="130" height="30" fill="none" stroke="#1a1a1a" stroke-width="0.8" />
+  <text x="561.2" y="280.4" font-size="8" fill="#1a1a1a" font-family="sans-serif">NEREID PROGRAM</text>
+  <text x="561.2" y="292.4" font-size="8" fill="#1a1a1a" font-family="sans-serif">DWG B6-00 · REV A</text>
+</svg>

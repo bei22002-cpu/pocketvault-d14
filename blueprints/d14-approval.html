@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D14 Rolltop · Manufacturing Approval</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #e7f0f2;
+      --muted: #8aa0a8;
+      --dim: #5c727a;
+      --line: rgba(231, 240, 242, 0.12);
+      --accent: #2ec4a8;
+      --accent-2: #7ec8e3;
+      --warn: #e2b36a;
+      --danger: #e07a6a;
+      --bg0: #071116;
+      --bg1: #0c1a22;
+      --panel: rgba(14, 28, 36, 0.78);
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html, body {
+      height: 100%;
+      background: var(--bg0);
+      color: var(--ink);
+      font-family: Sora, system-ui, sans-serif;
+      overflow: hidden;
+    }
+    .deck {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(1100px 640px at 12% -8%, rgba(46, 196, 168, 0.18), transparent 55%),
+        radial-gradient(800px 520px at 100% 10%, rgba(126, 200, 227, 0.09), transparent 48%),
+        linear-gradient(165deg, var(--bg0), var(--bg1) 42%, #08141b);
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: clamp(28px, 4.5vw, 56px) clamp(28px, 5.5vw, 72px) 78px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .brand {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(2.4rem, 6.2vw, 4.8rem);
+      line-height: 0.96;
+      letter-spacing: -0.03em;
+      max-width: 14ch;
+    }
+    h2 {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 650;
+      font-size: clamp(1.75rem, 3.8vw, 2.9rem);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      max-width: 20ch;
+      margin-bottom: 14px;
+    }
+    .lede {
+      font-size: clamp(0.98rem, 1.4vw, 1.18rem);
+      color: var(--muted);
+      max-width: 48ch;
+      line-height: 1.55;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(18px, 3.5vw, 44px);
+      align-items: center;
+      width: 100%;
+    }
+    .split-33 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      .split, .split-33 { grid-template-columns: 1fr; }
+      .slide { justify-content: flex-start; padding-top: 40px; overflow-y: auto; }
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 28px;
+      width: min(960px, 100%);
+    }
+    @media (max-width: 720px) { .stats { grid-template-columns: 1fr 1fr; } }
+    .stat {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 16px 14px;
+      border-radius: 10px;
+    }
+    .stat b {
+      display: block;
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .stat span { color: var(--muted); font-size: 0.78rem; }
+    .panel {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 18px 18px 16px;
+      height: 100%;
+    }
+    .panel h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+    .panel p, .panel li { color: var(--muted); font-size: 0.88rem; line-height: 1.45; }
+    .panel ul { padding-left: 1.1em; margin-top: 6px; }
+    .panel li { margin: 4px 0; }
+    .panel strong { color: var(--ink); font-weight: 600; }
+    .ask {
+      border: 1px solid rgba(46, 196, 168, 0.45);
+      background: rgba(46, 196, 168, 0.1);
+      border-radius: 12px;
+      padding: 18px 20px;
+      max-width: 54ch;
+      margin-top: 22px;
+    }
+    .ask .label {
+      color: var(--accent);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .ask p { color: var(--ink); font-size: 1.02rem; line-height: 1.45; }
+    .bullets { list-style: none; margin-top: 10px; max-width: 48ch; }
+    .bullets li {
+      position: relative;
+      padding: 9px 0 9px 22px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    .bullets li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 16px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .bullets strong { color: var(--ink); }
+    .media {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #000;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      display: block;
+    }
+    .caption { margin-top: 8px; color: var(--dim); font-size: 0.75rem; }
+    .table-wrap {
+      width: 100%;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+    th, td {
+      text-align: left;
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      color: var(--dim);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+    tr:last-child td { border-bottom: 0; }
+    td strong { color: var(--accent); font-weight: 600; }
+    .path {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      width: 100%;
+      margin-top: 8px;
+    }
+    @media (max-width: 900px) { .path { grid-template-columns: 1fr 1fr; } }
+    .step {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 14px;
+      min-height: 140px;
+    }
+    .step .n {
+      color: var(--accent);
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 650;
+      margin-bottom: 6px;
+    }
+    .step h3 { font-size: 0.9rem; margin-bottom: 6px; }
+    .step p { color: var(--muted); font-size: 0.78rem; line-height: 1.4; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .pill em { color: var(--accent); font-style: normal; font-weight: 600; }
+    .big-number {
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(3.5rem, 10vw, 6.5rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+      color: var(--accent);
+    }
+    .vote {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 16px;
+      width: min(920px, 100%);
+      margin-top: 20px;
+    }
+    @media (max-width: 800px) { .vote { grid-template-columns: 1fr; } }
+    .vote .yes {
+      border: 1px solid rgba(46, 196, 168, 0.5);
+      background: rgba(46, 196, 168, 0.12);
+      border-radius: 14px;
+      padding: 22px;
+    }
+    .vote .hold {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 14px;
+      padding: 22px;
+    }
+    .vote h3 { font-family: Fraunces, Georgia, serif; font-size: 1.5rem; margin-bottom: 10px; }
+    .footer-bar {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      border-top: 1px solid var(--line);
+      background: rgba(7, 17, 22, 0.92);
+      font-size: 0.72rem;
+      color: var(--dim);
+      z-index: 5;
+    }
+    .progress {
+      position: absolute;
+      left: 0; top: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.35s ease;
+    }
+    .nav-hint { display: flex; align-items: center; gap: 8px; }
+    kbd {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: inherit;
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+    .formula {
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+      letter-spacing: -0.02em;
+      margin: 18px 0 8px;
+      color: var(--ink);
+    }
+    .formula span { color: var(--accent); }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      width: 100%;
+      margin-top: 8px;
+    }
+    @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+    .danger { color: var(--warn); }
+    a.inline {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(46,196,168,0.35);
+    }
+  </style>
+</head>
+<body>
+  <div class="deck" id="deck">
+
+    <section class="slide active" data-title="Title">
+      <div class="eyebrow">Decision meeting · Manufacturing authorization</div>
+      <div class="brand">Approve D14 Rolltop manufacturing.</div>
+      <p class="lede" style="margin-top:20px">
+        The only design that <strong style="color:var(--ink)">packs flat into a dive bag</strong> —
+        soft TPU-aramid body, rigid force-sensed window, three rolls and clamp. Always with you. Usable through glass.
+      </p>
+      <div class="ask">
+        <div class="label">Today’s ask</div>
+        <p>Authorize Phase P0→P1: CNC/ soft-tool bezels, RF-weld fabric bodies, window + load-cell stack, and dunk-proof campaign — prove the soft-goods seal before production tooling.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>6 m</b><span>Design depth</span></div>
+        <div class="stat"><b>122 g</b><span>Mass target</span></div>
+        <div class="stat"><b>~40%</b><span>Packed vs rigid volume</span></div>
+        <div class="stat"><b>P1</b><span>What we need approved</span></div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Stakes">
+      <div class="eyebrow">Why this meeting matters</div>
+      <h2>Availability beats another hard case.</h2>
+      <div class="split">
+        <ul class="bullets">
+          <li><strong>People forget dry bags.</strong> A rigid case only works if it came on the trip.</li>
+          <li><strong>D14 lives in the kit:</strong> packs to ~40% of any rigid Nereid shell — disappears until water shows up.</li>
+          <li><strong>Survey-aligned:</strong> waterproof + phone usable through the window — not a dead pouch.</li>
+          <li class="danger"><strong>Without a soft-goods manufacturing path,</strong> we only know how to machine boxes. The packable SKU — and the campus dunk demo story — dies on paper.</li>
+        </ul>
+        <div>
+          <img class="media" src="products/product-D14-rolltop.png" alt="D14 product" />
+          <div class="caption">Product concept · Rolltop · fabric body · rigid sensing bezel</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Insight">
+      <div class="eyebrow">The engineering bet</div>
+      <h2>Hard where it senses. Soft everywhere else.</h2>
+      <p class="formula">500D aramid + TPU · <span>RF-welded</span> to bezel lip · <span>3 rolls + buckle</span> · A1 load-cell glass</p>
+      <div class="two-col">
+        <div class="panel">
+          <h3>Rigid-only path</h3>
+          <ul>
+            <li>Always the same bulk in the bag</li>
+            <li>Impact goes into the shell</li>
+            <li>Seal = O-rings on mating halves</li>
+            <li>Great for abuse; poor for “bring it every time”</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>D14 path</h3>
+          <ul>
+            <li><strong>Fabric body</strong> absorbs hit by deforming</li>
+            <li><strong>Only hard part</strong> = force-sensed window bezel</li>
+            <li>Closure = trained roll + dual side-release clamp</li>
+            <li>Manufacturing owns <strong>RF weld + fold discipline + bezel FAIR</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pill-row">
+        <div class="pill">Touch through glass · <em>4 load cells</em></div>
+        <div class="pill">Roll seal · <em>3 folds minimum</em></div>
+        <div class="pill">Risk · <em>bezel edge impact</em></div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Product">
+      <div class="eyebrow">What we would build</div>
+      <h2>D14 Rolltop — locked spec</h2>
+      <div class="split">
+        <div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Parameter</th><th>Spec</th></tr></thead>
+              <tbody>
+                <tr><td>Envelope (deployed)</td><td><strong>175 × 95 × 40 mm</strong></td></tr>
+                <tr><td>Aperture</td><td><strong>148 × 70 mm</strong> glass</td></tr>
+                <tr><td>Body</td><td>500D aramid + TPU coat</td></tr>
+                <tr><td>Bezel</td><td>PPA / Mg · flange for RF weld</td></tr>
+                <tr><td>Sensing</td><td>A1-style 4 load cells · 61 g stack</td></tr>
+                <tr><td>Closure</td><td>3 rolls + 2 side-release buckles</td></tr>
+                <tr><td>Mass budget</td><td><strong>122 g</strong> (34+61+16+11)</td></tr>
+                <tr><td>Depth</td><td>6 m design · dunk-proof 1.5×</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <img class="media" src="assets/D14-rolltop-blueprint.png" alt="D14 blueprint" />
+          <div class="caption">Blueprint · CAD STEP/STL · models/D14/</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Evidence">
+      <div class="eyebrow">We are not starting from a napkin</div>
+      <h2>The package already exists.</h2>
+      <div class="split-33">
+        <div class="panel">
+          <h3>Geometry</h3>
+          <p><strong>rigid_bezel.step</strong> · window · fabric cut pattern</p>
+          <p style="margin-top:8px">Bezel volume 82.1 cm³ · flange for RF weld lip</p>
+        </div>
+        <div class="panel">
+          <h3>BOM &amp; mass</h3>
+          <p>Body 34 + bezel/window/cells 61 + battery/BLE 16 + buckles 11</p>
+          <p style="margin-top:8px">= <strong>122 g</strong></p>
+        </div>
+        <div class="panel">
+          <h3>Training media</h3>
+          <p>HQ explode / work · lifestyle pack shot · film</p>
+          <p style="margin-top:8px"><a class="inline" href="videos/products/D14-rolltop.mp4">D14-rolltop.mp4</a></p>
+        </div>
+      </div>
+      <div class="split" style="margin-top:16px">
+        <div>
+          <img class="media" src="hq/hq-D14-explode.png" alt="Exploded" />
+          <div class="caption">Exploded manufacturing still</div>
+        </div>
+        <div>
+          <img class="media" src="rolltop/renders/deployment-sequence.png" alt="Roll sequence" />
+          <div class="caption">Roll / clamp use sequence (soft-goods cousin)</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Process">
+      <div class="eyebrow">Freeze-before-tooling</div>
+      <h2>The weld and the fold are the product.</h2>
+      <div class="two-col" style="margin-top:8px">
+        <div class="panel">
+          <h3>RF weld stack</h3>
+          <p style="margin-top:10px">TPU face → bezel seal lip (continuous)</p>
+          <p>No stitch penetrations below waterline</p>
+          <p>Peel strength target logged per lot</p>
+          <p style="margin-top:12px"><strong>Fail mode if skipped:</strong> slow leak at flange that dunk demos expose publicly.</p>
+        </div>
+        <div class="panel">
+          <h3>Roll discipline</h3>
+          <p style="margin-top:10px"><strong>3 folds minimum</strong> toward bezel</p>
+          <p>Dual side-release buckles clamp roll</p>
+          <p>Train + stencil fold marks on P1 samples</p>
+          <p style="margin-top:12px"><strong>Proof:</strong> dunk every unit 1.5× design (≥9 m equiv / timed tank) after trained fold — not “shake and hope.”</p>
+        </div>
+      </div>
+      <p class="lede" style="margin-top:18px">Hard bezel edge is the known impact weak point — P1 includes edge bumper / bag-pad options before we call structure done.</p>
+    </section>
+
+    <section class="slide" data-title="Ladder">
+      <div class="eyebrow">De-risked authorization path</div>
+      <h2>We are not asking for production fabric dies today.</h2>
+      <div class="path">
+        <div class="step">
+          <div class="n">P0</div>
+          <h3>Pattern fit</h3>
+          <p>Print bezel + paper/fabric mock. Phone cavity. No dunk.</p>
+        </div>
+        <div class="step" style="border-color:rgba(46,196,168,0.55)">
+          <div class="n">P1</div>
+          <h3>Weld + dunk</h3>
+          <p><strong style="color:var(--ink)">ASK TODAY.</strong> CNC bezel, RF-weld bodies, window stack, dunk proof.</p>
+        </div>
+        <div class="step">
+          <div class="n">P2</div>
+          <h3>Live demos</h3>
+          <p>Load cells live · campus dunk booth · touch-through-glass proof.</p>
+        </div>
+        <div class="step">
+          <div class="n">P3</div>
+          <h3>Tooling</h3>
+          <p>Bezel mold + production RF fixtures if P1/P2 pass.</p>
+        </div>
+        <div class="step">
+          <div class="n">P4</div>
+          <h3>Production</h3>
+          <p>SPC on peel strength, fold audit, dunk yield.</p>
+        </div>
+      </div>
+      <div class="ask">
+        <div class="label">Why this structure wins the room</div>
+        <p>Capital follows a leak-free dunk — not a pretty render. Approve the process that can fail on the bench, not on stage.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Build">
+      <div class="eyebrow">Manufacturing system</div>
+      <h2>Nine phases. Owned. Exit-gated.</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Phase</th><th>Exit criteria</th></tr></thead>
+          <tbody>
+            <tr><td>0</td><td>Engineering freeze</td><td>STEP bezel + DXF pattern + fold spec signed</td></tr>
+            <tr><td>1</td><td>Materials RFQ</td><td>2 sources: TPU-aramid, buckles, glass, cells</td></tr>
+            <tr><td>2</td><td>Bezel manufacture</td><td>FAIR flange flatness ≤ 0.05 mm; cell pockets</td></tr>
+            <tr><td>3</td><td>Fabric cut + RF weld</td><td>Peel test pass; no pinholes at lip</td></tr>
+            <tr><td>4</td><td>Window + load cells</td><td>Dry force calibration; no glass bind</td></tr>
+            <tr><td>5</td><td>Electronics</td><td>BLE + battery sealed in dry pocket</td></tr>
+            <tr><td>6</td><td>Fold training</td><td>Operator can hit 3-fold + clamp in &lt;15 s</td></tr>
+            <tr><td>7</td><td>Dunk proof</td><td>1.5× design, timed; no fog / no weep</td></tr>
+            <tr><td>8</td><td>Release</td><td>Serial + fold card + care kit</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Money">
+      <div class="eyebrow">What approval funds</div>
+      <h2>P1 budget — prove the seal, not inventory.</h2>
+      <div class="split">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Line</th><th>Band</th></tr></thead>
+            <tbody>
+              <tr><td>CNC / soft-tool bezels (8–12)</td><td><strong>$1.5k–$4k</strong></td></tr>
+              <tr><td>Fabric, RF weld shop time, fixtures</td><td><strong>$1.5k–$4k</strong></td></tr>
+              <tr><td>Glass + load cells + seals</td><td><strong>$1.2k–$3k</strong></td></tr>
+              <tr><td>Buckles / roll bars / labels</td><td><strong>$0.3k–$0.8k</strong></td></tr>
+              <tr><td>Dunk tank access + instrumentation</td><td><strong>$0.4k–$1.5k</strong></td></tr>
+              <tr><td>Electronics bring-up (BLE)</td><td><strong>$1.5k–$4k</strong></td></tr>
+              <tr><td>Labor / contingency (20%)</td><td><strong>$1k–$2.5k</strong></td></tr>
+              <tr><td><strong>P1 authorization total</strong></td><td><strong>$7k–$18k</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="big-number">~$11k</div>
+          <p class="lede" style="margin-top:12px">Planning midpoint to a pass/fail dunk answer in ~5 weeks from freeze.</p>
+          <div class="panel" style="margin-top:16px">
+            <h3>Not funded by this vote</h3>
+            <ul>
+              <li>Production bezel injection mold</li>
+              <li>100–250 unit inventory buy</li>
+              <li>Full outdoor-gear certification filing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Schedule">
+      <div class="eyebrow">Five-week P1 clock</div>
+      <h2>From freeze to dunk.</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Week</th><th>Focus</th><th>Visible output</th></tr></thead>
+          <tbody>
+            <tr><td><strong>0–1</strong></td><td>Freeze STEP/DXF/fold spec; RFQ fabric &amp; weld shop</td><td>Signed packet</td></tr>
+            <tr><td><strong>2</strong></td><td>CNC bezels + first RF-weld bodies</td><td>FAIR + peel coupons</td></tr>
+            <tr><td><strong>3</strong></td><td>Window/cells install; fold training</td><td>Dry UI + fold time log</td></tr>
+            <tr><td><strong>4</strong></td><td>Dunk campaign 1.5×</td><td>Pass/fail data pack</td></tr>
+            <tr><td><strong>5</strong></td><td>Go / no-go for P2 live demos</td><td>Decision memo</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pill-row">
+        <div class="pill">Kill · <em>flange leak or fold cannot seal</em></div>
+        <div class="pill">Success · <em>≥5 units dunk-pass with peel log</em></div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Risks">
+      <div class="eyebrow">Preempt the objections</div>
+      <h2>We already named what can kill us.</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Risk</th><th>If true</th><th>Mitigation in P1</th></tr></thead>
+          <tbody>
+            <tr><td>RF weld pinholes at lip</td><td>Public dunk fail</td><td>Peel coupons every lot; dye-pen flange</td></tr>
+            <tr><td>User under-rolls (1–2 folds)</td><td>“It leaked” reviews</td><td>Stenciled fold marks + &lt;15 s training card</td></tr>
+            <tr><td>Bezel edge impact crack</td><td>Window breach</td><td>Edge bumper options; drop sample matrix</td></tr>
+            <tr><td>Touch through glass weak wet</td><td>No differentiator</td><td>Load-cell cal in dunk; reject if unusable gloved</td></tr>
+            <tr><td>Fabric abrasion / sand</td><td>Early wear</td><td>510.7 sand exposure sample; coat check</td></tr>
+            <tr><td>COGS too high for $19.99</td><td>Margin death</td><td>P1 actuals → price or scope decision before P3</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Safety">
+      <div class="eyebrow">Integrity</div>
+      <h2>We will not oversell IPX claims.</h2>
+      <div class="two-col">
+        <div class="panel">
+          <h3>After P1 pass we claim</h3>
+          <ul>
+            <li>Bench dunk survival at 1.5× design</li>
+            <li>Documented RF-weld + fold process</li>
+            <li>Repeatable peel / fold / dunk logs</li>
+            <li>“Soft-goods architecture validated for demos”</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>We will not claim yet</h3>
+          <ul>
+            <li>IPX8 / dive-computer certification</li>
+            <li>Life-critical or overhead diving use</li>
+            <li>Unlimited depth or “military waterproof”</li>
+            <li>Production yield or lifetime abrasion rating</li>
+          </ul>
+        </div>
+      </div>
+      <p class="lede" style="margin-top:22px">Campus dunk demos only happen on serials that passed P1 proof. No exceptions for “it looked fine.”</p>
+    </section>
+
+    <section class="slide" data-title="Ask">
+      <div class="eyebrow">Motion for the room</div>
+      <h2>Approve P1 manufacturing authorization.</h2>
+      <div class="vote">
+        <div class="yes">
+          <h3>Approve</h3>
+          <ul class="bullets" style="margin:0">
+            <li><strong>Budget:</strong> up to $18k (target ~$11k)</li>
+            <li><strong>Scope:</strong> bezels, RF-weld bodies, window/cells, dunk proofs</li>
+            <li><strong>Duration:</strong> 5 weeks to go/no-go memo</li>
+            <li><strong>Success:</strong> ≥5 units dunk-pass with peel + fold logs</li>
+            <li><strong>Next gate:</strong> separate vote for P2 demos / P3 tooling</li>
+          </ul>
+        </div>
+        <div class="hold">
+          <h3>If you hold</h3>
+          <p style="color:var(--muted);font-size:0.92rem;line-height:1.45">
+            We stay in rigid-case thinking. The packable, always-with-you SKU — and the dunk-demo sales motion — does not get built.
+          </p>
+          <p style="color:var(--muted);font-size:0.92rem;line-height:1.45;margin-top:12px">
+            Holding is rational only if the group rejects soft-goods as a product thesis — not because this plan is incomplete.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Close">
+      <div class="eyebrow">D14 Rolltop</div>
+      <div class="brand" style="max-width:16ch">Pack flat. Roll shut. Prove the weld.</div>
+      <p class="lede" style="margin-top:20px">
+        Full manufacturing plan, BOM, work instructions, and test gates are ready for the packet.
+      </p>
+      <div class="pill-row">
+        <div class="pill">Deck · <em>d14-approval.html</em></div>
+        <div class="pill">Plan · <em>manufacturing/D14-…Plan.md</em></div>
+        <div class="pill">Leave-behind · <em>d14-approval-brief.html</em></div>
+        <div class="pill">Notes · <em>D14-SPEAKER-NOTES.md</em></div>
+      </div>
+      <div class="ask">
+        <div class="label">Decision</div>
+        <p>Do we authorize P1 — yes or no?</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="footer-bar">
+    <div class="progress" id="progress"></div>
+    <div>D14 Rolltop · Manufacturing Approval · Confidential</div>
+    <div class="nav-hint">
+      <kbd>←</kbd> <kbd>→</kbd> · <kbd>F</kbd> fullscreen ·
+      <span id="counter">1 / 14</span>
+    </div>
+  </div>
+
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    let i = 0;
+    function show(n) {
+      i = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
+      document.getElementById("counter").textContent = `${i + 1} / ${slides.length}`;
+      document.getElementById("progress").style.width = `${((i + 1) / slides.length) * 100}%`;
+      history.replaceState(null, "", `#${i + 1}`);
+    }
+    function next() { show(i + 1); }
+    function prev() { show(i - 1); }
+    document.addEventListener("keydown", (e) => {
+      if (["ArrowRight", "ArrowDown", " ", "PageDown", "Enter"].includes(e.key)) { e.preventDefault(); next(); }
+      else if (["ArrowLeft", "ArrowUp", "PageUp", "Backspace"].includes(e.key)) { e.preventDefault(); prev(); }
+      else if (e.key === "Home") show(0);
+      else if (e.key === "End") show(slides.length - 1);
+      else if (e.key === "f" || e.key === "F") {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+        else document.exitFullscreen?.();
+      }
+    });
+    document.getElementById("deck").addEventListener("click", (e) => {
+      if (e.target.closest("a")) return;
+      if (e.clientX >= window.innerWidth / 2) next(); else prev();
+    });
+    const start = Math.max(0, parseInt(location.hash.replace("#", ""), 10) - 1 || 0);
+    show(start);
+  </script>
+</body>
+</html>

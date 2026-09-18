@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PocketVault · D14 Rolltop · Product Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #e7f0f2;
+      --muted: #8aa0a8;
+      --dim: #5c727a;
+      --line: rgba(231, 240, 242, 0.12);
+      --accent: #2ec4a8;
+      --accent-2: #7ec8e3;
+      --warn: #e2b36a;
+      --danger: #e07a6a;
+      --bg0: #071116;
+      --bg1: #0c1a22;
+      --panel: rgba(14, 28, 36, 0.78);
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html, body {
+      height: 100%;
+      background: var(--bg0);
+      color: var(--ink);
+      font-family: Sora, system-ui, sans-serif;
+      overflow: hidden;
+    }
+    .deck {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(1100px 640px at 12% -8%, rgba(46, 196, 168, 0.16), transparent 55%),
+        radial-gradient(800px 520px at 100% 10%, rgba(126, 200, 227, 0.08), transparent 48%),
+        linear-gradient(165deg, var(--bg0), var(--bg1) 42%, #08141b);
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: clamp(28px, 4.2vw, 54px) clamp(28px, 5.5vw, 72px) 76px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .slide.active { display: flex; opacity: 1; transform: translateY(0); }
+    .slide.bleed { padding: 0 0 52px; justify-content: flex-end; }
+
+    /* ---- Assertion headline: the takeaway, absorbed in two seconds ---- */
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .assert {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 650;
+      font-size: clamp(1.7rem, 3.5vw, 2.7rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      max-width: 26ch;
+      margin-bottom: 20px;
+    }
+    .brand {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(2.2rem, 5.6vw, 4.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      max-width: 15ch;
+    }
+    .lede {
+      font-size: clamp(0.98rem, 1.35vw, 1.14rem);
+      color: var(--muted);
+      max-width: 46ch;
+      line-height: 1.55;
+    }
+    .support { color: var(--muted); font-size: 0.9rem; line-height: 1.5; max-width: 52ch; }
+
+    .split { display: grid; grid-template-columns: 1.02fr 0.98fr; gap: clamp(18px, 3.4vw, 44px); align-items: center; width: 100%; }
+    .split-33 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; width: 100%; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; }
+    .gallery { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 12px; width: 100%; }
+    @media (max-width: 900px) {
+      .split, .split-33, .two-col, .gallery, .vote { grid-template-columns: 1fr; }
+      .slide { justify-content: flex-start; padding-top: 38px; overflow-y: auto; }
+      .slide.bleed { justify-content: flex-end; }
+    }
+
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; width: min(980px, 100%); }
+    .stats.mt { margin-top: 24px; }
+    @media (max-width: 720px) { .stats { grid-template-columns: 1fr 1fr; } }
+    .stat { border: 1px solid var(--line); background: var(--panel); padding: 15px 14px; border-radius: 10px; }
+    .stat b {
+      display: block;
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .stat span { color: var(--muted); font-size: 0.76rem; }
+    .stat.hot b { color: var(--accent); }
+
+    .panel { border: 1px solid var(--line); background: var(--panel); border-radius: 12px; padding: 17px 18px 15px; height: 100%; }
+    .panel h3 { font-size: 0.93rem; font-weight: 600; margin-bottom: 8px; }
+    .panel p, .panel li { color: var(--muted); font-size: 0.87rem; line-height: 1.45; }
+    .panel ul { padding-left: 1.1em; margin-top: 6px; }
+    .panel li { margin: 4px 0; }
+    .panel strong { color: var(--ink); font-weight: 600; }
+    .panel.warn { border-color: rgba(226, 179, 106, 0.4); }
+    .panel.warn h3 { color: var(--warn); }
+
+    .ask { border: 1px solid rgba(46, 196, 168, 0.45); background: rgba(46, 196, 168, 0.1); border-radius: 12px; padding: 18px 20px; max-width: 56ch; }
+    .ask .label { color: var(--accent); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+    .ask p { color: var(--ink); font-size: 1.02rem; line-height: 1.5; }
+
+    .bullets { list-style: none; max-width: 46ch; }
+    .bullets li {
+      position: relative;
+      padding: 9px 0 9px 22px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      font-size: 0.93rem;
+      line-height: 1.42;
+    }
+    .bullets li::before { content: ""; position: absolute; left: 0; top: 16px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .bullets strong { color: var(--ink); }
+
+    .media {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #000;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      display: block;
+      max-height: calc(100vh - 150px);
+    }
+    .media.wide { aspect-ratio: 16 / 9; }
+    .media.tall { aspect-ratio: 4 / 5; object-position: center top; }
+    .media.paper { background: #fff; object-fit: contain; aspect-ratio: 16 / 9; }
+    .caption { margin-top: 8px; color: var(--dim); font-size: 0.74rem; }
+
+    .table-wrap { width: 100%; overflow: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--dim); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+    tr:last-child td { border-bottom: 0; }
+    td strong { color: var(--accent); font-weight: 600; }
+    td.no { color: var(--warn); }
+
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .pill { border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: 0.75rem; color: var(--muted); }
+    .pill em { color: var(--accent); font-style: normal; font-weight: 600; }
+
+    /* ---- Contrast: what is vs what could be ---- */
+    .contrast { display: grid; grid-template-columns: 1fr auto 1fr; gap: 18px; align-items: stretch; width: min(1000px, 100%); }
+    @media (max-width: 900px) { .contrast { grid-template-columns: 1fr; } }
+    .contrast .now { border: 1px solid var(--line); background: rgba(224, 122, 106, 0.06); border-radius: 12px; padding: 20px; }
+    .contrast .then { border: 1px solid rgba(46, 196, 168, 0.4); background: rgba(46, 196, 168, 0.09); border-radius: 12px; padding: 20px; }
+    .contrast h3 { font-family: Fraunces, Georgia, serif; font-size: 1.15rem; margin-bottom: 10px; }
+    .contrast .now h3 { color: var(--danger); }
+    .contrast .then h3 { color: var(--accent); }
+    .contrast p { color: var(--muted); font-size: 0.89rem; line-height: 1.5; margin-bottom: 8px; }
+    .contrast .arrow { display: flex; align-items: center; color: var(--dim); font-size: 1.4rem; }
+    @media (max-width: 900px) { .contrast .arrow { display: none; } }
+
+    .step { border: 1px solid var(--line); background: var(--panel); border-radius: 12px; padding: 16px; }
+    .step .n { color: var(--accent); font-family: Fraunces, Georgia, serif; font-size: 1.45rem; font-weight: 650; margin-bottom: 6px; }
+    .step h3 { font-size: 0.93rem; margin-bottom: 6px; }
+    .step p { color: var(--muted); font-size: 0.83rem; line-height: 1.45; }
+
+    .vote { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: min(960px, 100%); margin-top: 6px; }
+    .vote .yes { border: 1px solid rgba(46, 196, 168, 0.5); background: rgba(46, 196, 168, 0.12); border-radius: 14px; padding: 22px; }
+    .vote .no { border: 1px solid var(--line); background: var(--panel); border-radius: 14px; padding: 22px; }
+    .vote h3 { font-family: Fraunces, Georgia, serif; font-size: 1.4rem; margin-bottom: 10px; }
+    .vote .no h3 { color: var(--muted); }
+    .vote p { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+    .vote .yes p { color: var(--ink); }
+
+    .bleed-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+    .bleed-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7,17,22,0.9) 0%, rgba(7,17,22,0.58) 44%, rgba(7,17,22,0.12) 100%); }
+    .bleed-copy { position: relative; z-index: 2; padding: clamp(36px, 6vw, 80px); padding-bottom: 72px; max-width: min(620px, 50vw); }
+    .bleed-copy .brand { color: #fff; }
+    .bleed-copy .lede { max-width: 38ch; color: #c5d4d8; }
+    @media (max-width: 900px) { .bleed-copy { max-width: none; } }
+
+    .fine { color: var(--dim); font-size: 0.74rem; margin-top: 12px; max-width: 64ch; line-height: 1.45; }
+
+    /* ---- Business Model Canvas ----
+       Rendered at a fixed design size and scaled to fit, so the nine blocks
+       stay in canvas proportion instead of clipping on short viewports. */
+    .bmc-stage {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bmc {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: 1fr 1fr auto;
+      gap: 6px;
+      width: 1240px;
+      height: 560px;
+      flex: none;
+      transform-origin: center center;
+    }
+    .bmc-cell {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 7px;
+      padding: 8px 9px;
+      overflow: hidden;
+      min-height: 0;
+    }
+    .bmc-cell h4 {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .bmc-cell ul { list-style: none; }
+    .bmc-cell li {
+      color: var(--muted);
+      font-size: 0.63rem;
+      line-height: 1.32;
+      padding: 1.5px 0 1.5px 8px;
+      position: relative;
+    }
+    .bmc-cell li::before { content: "·"; position: absolute; left: 0; color: var(--dim); }
+    .bmc-cell li strong { color: var(--ink); font-weight: 600; }
+    .bmc-cell .sub {
+      color: var(--dim);
+      font-size: 0.56rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 6px 0 3px;
+      font-weight: 600;
+    }
+    .bmc-cell .sub:first-of-type { margin-top: 0; }
+    .bmc-cell.vp { border-color: rgba(46, 196, 168, 0.4); background: rgba(46, 196, 168, 0.07); }
+    .bmc-cell.money { border-color: rgba(126, 200, 227, 0.26); }
+    .bmc-cell.money h4 { color: var(--accent-2); }
+    .kp { grid-column: 1; grid-row: 1 / 3; }
+    .ka { grid-column: 2; grid-row: 1; }
+    .kr { grid-column: 2; grid-row: 2; }
+    .vp { grid-column: 3; grid-row: 1 / 3; }
+    .cr { grid-column: 4; grid-row: 1; }
+    .ch { grid-column: 4; grid-row: 2; }
+    .cs { grid-column: 5; grid-row: 1 / 3; }
+    .cost { grid-column: 1 / 4; grid-row: 3; }
+    .rev { grid-column: 4 / 6; grid-row: 3; }
+    .cost ul, .rev ul { columns: 2; column-gap: 14px; }
+    .bmc-slide { padding-top: clamp(20px, 2.6vw, 30px); padding-bottom: 64px; }
+    .bmc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+    .bmc-head h2 {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 650;
+      font-size: clamp(1.15rem, 2vw, 1.5rem);
+      letter-spacing: -0.02em;
+    }
+    .bmc-head .meta { color: var(--dim); font-size: 0.68rem; }
+
+    .appendix-flag {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 12px;
+    }
+
+    .footer-bar {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      border-top: 1px solid var(--line);
+      background: rgba(7, 17, 22, 0.92);
+      font-size: 0.72rem;
+      color: var(--dim);
+      z-index: 5;
+    }
+    .progress { position: absolute; left: 0; top: 0; height: 2px; width: 0%; background: var(--accent); transition: width 0.35s ease; }
+    .nav-hint { display: flex; align-items: center; gap: 8px; }
+    kbd { border: 1px solid var(--line); border-radius: 4px; padding: 2px 6px; font-family: inherit; font-size: 0.68rem; color: var(--muted); }
+
+    /* ---- Presenter notes overlay (press N) ---- */
+    .notes {
+      position: absolute;
+      left: 0; right: 0; bottom: 52px;
+      background: rgba(4, 11, 15, 0.96);
+      border-top: 1px solid var(--accent);
+      padding: 16px 24px 18px;
+      z-index: 6;
+      display: none;
+      max-height: 42vh;
+      overflow-y: auto;
+    }
+    .notes.show { display: block; }
+    .notes .label { color: var(--accent); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+    .notes p { color: var(--ink); font-size: 0.92rem; line-height: 1.55; max-width: 90ch; }
+  </style>
+</head>
+<body>
+  <div class="deck" id="deck">
+
+    <!-- 1 · BLUF: the decision request, first 30 seconds -->
+    <section class="slide bleed active" data-title="The ask"
+      data-notes="BLUF. Do not warm up. 'I'm asking for one decision today: adopt D14 Rolltop as our flagship product and fund the RFQ plus demo build, so we can open 8 to 15 wholesale doors before December 16.' Then pause.">
+      <img class="bleed-bg" src="pitch/hero-ui.png" alt="D14 Rolltop with a phone usable through the window" />
+      <div class="bleed-scrim"></div>
+      <div class="bleed-copy">
+        <div class="eyebrow">PocketVault · Product proposal · Decision requested</div>
+        <div class="brand">Adopt D14 Rolltop as our flagship product.</div>
+        <p class="lede" style="margin-top:18px">
+          A waterproof phone pouch you can actually use through the window — sold wholesale to retail stores.
+        </p>
+        <div class="ask" style="margin-top:20px;background:rgba(7,17,22,0.72)">
+          <div class="label">The ask</div>
+          <p>Approve the RFQ and demo build. Target: <strong>8–15 stores live</strong> by Dec 16 at <strong>$19.99 MSRP / ~$10 wholesale</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 · Recommendation on one page -->
+    <section class="slide" data-title="Bottom line"
+      data-notes="The whole proposal in 45 seconds, so nobody has to wait for the payoff. Ask, impact, evidence, first step. If they approve here, skip to trade-offs and close early.">
+      <div class="eyebrow">Bottom line up front</div>
+      <h2 class="assert">The evidence, the drawing, and the sales motion already exist — what is missing is a decision.</h2>
+      <div class="two-col">
+        <div class="panel">
+          <h3>What we are asking for</h3>
+          <ul>
+            <li>Name <strong>D14 Rolltop</strong> the flagship SKU</li>
+            <li>Fund <strong>RFQ + dunk-pass demo units</strong></li>
+            <li>Authorize wholesale pitching this window</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>What it buys us</h3>
+          <ul>
+            <li>A product on shelves in the <strong>Oct 12 – Dec 16</strong> window</li>
+            <li><strong>8–15 doors</strong>, then reorders</li>
+            <li>A repeatable wholesale motion, not a one-off</li>
+          </ul>
+        </div>
+      </div>
+      <div class="stats mt">
+        <div class="stat hot"><b>n = 47</b><span>Buyers surveyed</span></div>
+        <div class="stat"><b>$19.99</b><span>Survey-set MSRP</span></div>
+        <div class="stat"><b>~$10</b><span>Wholesale to stores</span></div>
+        <div class="stat"><b>Dec 16</b><span>Window closes</span></div>
+      </div>
+    </section>
+
+    <!-- 3 · The change (what is) -->
+    <section class="slide" data-title="What changed"
+      data-notes="Name the external shift, not our problem. Phones became the one thing nobody leaves behind — including at the lake. The change is real whether we exist or not.">
+      <div class="eyebrow">What changed in the world</div>
+      <h2 class="assert">Phones went everywhere water is, and protection never followed.</h2>
+      <div class="split">
+        <ul class="bullets">
+          <li><strong>55%</strong> of surveyed buyers have already ruined something in water.</li>
+          <li><strong>62%</strong> carry no protection at all — the default is hope.</li>
+          <li>Dry bags solved the wrong half: they protect the phone by making it <strong>unusable</strong>.</li>
+          <li>People will not carry gear that costs them the camera.</li>
+        </ul>
+        <div>
+          <img class="media wide" src="pitch/in-use-underwater.jpg" alt="Phone in pouch, held underwater, screen visible" />
+          <div class="caption">PocketVault survey · n = 47 · campus-weighted · Sep 2026</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 · The enemy -->
+    <section class="slide" data-title="The enemy"
+      data-notes="Name the antagonist so we are not selling against REI. Our competitor is the Ziploc and the empty pocket. That reframes the price conversation entirely: we are not asking someone to trade down from a dry bag, we are asking them to stop using nothing.">
+      <div class="eyebrow">Who we are actually competing with</div>
+      <h2 class="assert">Our competitor is not a $80 dry bag. It is a sandwich bag and “I’ll be careful.”</h2>
+      <div class="contrast">
+        <div class="now">
+          <h3>What people use today</h3>
+          <p><strong style="color:var(--ink)">62%</strong> — nothing at all</p>
+          <p><strong style="color:var(--ink)">19%</strong> — gear that is not actually waterproof</p>
+          <p>Remainder — Ziploc bags, or a case that was never rated for water</p>
+          <p style="margin-top:12px;color:var(--dim)">Every one of these fails the same way: at the worst possible moment, with a $1,000 phone inside.</p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="then">
+          <h3>What we put on the shelf</h3>
+          <p>A pouch that seals <em style="font-style:normal;color:var(--ink)">and</em> lets you use the phone</p>
+          <p>Priced where an impulse buy lives, not where gear shopping starts</p>
+          <p>Proven in front of the customer with a dunk demo</p>
+          <p style="margin-top:12px;color:var(--dim)">We are not asking anyone to trade down. We are asking them to stop using nothing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 · Promised land -->
+    <section class="slide bleed" data-title="Promised land"
+      data-notes="Tease the win before the product. Winning is not 'we made a pouch.' Winning is a counter display that empties and a buyer who texts us for more. Say it, then move on — do not oversell.">
+      <img class="bleed-bg" src="pitch/in-use-underwater.jpg" alt="D14 in use in open water" style="object-position:center 30%" />
+      <div class="bleed-scrim" style="background:linear-gradient(180deg, rgba(7,17,22,0.2) 0%, rgba(7,17,22,0.86) 100%)"></div>
+      <div class="bleed-copy" style="max-width:min(700px,60vw)">
+        <div class="eyebrow">What winning looks like</div>
+        <div class="brand" style="font-size:clamp(1.9rem,4.4vw,3.2rem);max-width:20ch">A counter display that empties, and a buyer who texts us for more.</div>
+        <p class="lede" style="margin-top:16px">Not a catalog. Not a survey. Reorders.</p>
+      </div>
+    </section>
+
+    <!-- 6 · The product -->
+    <section class="slide" data-title="Product"
+      data-notes="Now, and only now, the product. Frame every feature as the thing that gets a store to the promised land. Hold up the sample here if you have one.">
+      <div class="split">
+        <div>
+          <div class="eyebrow">The product</div>
+          <h2 class="assert">D14 seals like a dry bag and works like a phone.</h2>
+          <ul class="bullets">
+            <li><strong>Waterproof</strong> — the #1 ranked claim in our survey.</li>
+            <li><strong>Touchscreen through the window</strong> — the reason it beats a bag.</li>
+            <li><strong>Packs flat</strong> with a wrist lanyard — a counter SKU, not a shelf hog.</li>
+            <li><strong>Obvious close</strong> — roll three times, clip two buckles.</li>
+          </ul>
+        </div>
+        <div>
+          <img class="media tall" src="pitch/hero-ui.png" alt="D14 Rolltop product render" />
+          <div class="caption">Concept render · phone remains usable through the window</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 · How it works -->
+    <section class="slide" data-title="How it works"
+      data-notes="Three beats, said fast. The point is not the mechanism — it is that a clerk can demo this in twenty seconds without training.">
+      <div class="eyebrow">How it works</div>
+      <h2 class="assert">A clerk can demo the whole product in twenty seconds.</h2>
+      <div class="split-33">
+        <div class="step">
+          <div class="n">01</div>
+          <h3>Load</h3>
+          <p>Phone, keys, cards into the soft body. Window sits over the screen.</p>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <h3>Seal</h3>
+          <p>Roll the mouth three times. Clip both side-release buckles to the bezel.</p>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <h3>Dunk it</h3>
+          <p>Drop it in the tank on the counter. Answer the phone through the glass.</p>
+        </div>
+      </div>
+      <div style="margin-top:18px;width:min(780px,100%)">
+        <img class="media" src="pitch/clamp-macro.png" alt="Roll-and-clamp closure detail" style="aspect-ratio:21/9" />
+        <div class="caption">Roll-and-clamp closure · dual side-release buckles</div>
+      </div>
+    </section>
+
+    <!-- 8 · Evidence -->
+    <section class="slide" data-title="Evidence"
+      data-notes="Evidence comes after the story, not before. The strongest line: we did not guess the price, the buyers set it. Also flag the honest weakness — 34% top-2 intent — before anyone else finds it.">
+      <div class="eyebrow">Customer evidence · n = 47</div>
+      <h2 class="assert">We did not guess the price or the claims — surveyed buyers set both.</h2>
+      <div class="stats">
+        <div class="stat"><b>55%</b><span>Already had water damage</span></div>
+        <div class="stat"><b>62%</b><span>Use nothing today</span></div>
+        <div class="stat hot"><b>$15–$25</b><span>Acceptable price band</span></div>
+        <div class="stat"><b>≈ $20</b><span>Indifference point → $19.99</span></div>
+      </div>
+      <div class="two-col" style="margin-top:16px">
+        <div class="panel">
+          <h3>The hangtag says four things. Only four.</h3>
+          <ul>
+            <li>Waterproof</li>
+            <li>Touchscreen through the window</li>
+            <li>Easy open and close</li>
+            <li>Durable</li>
+          </ul>
+        </div>
+        <div class="panel warn">
+          <h3>The honest weakness</h3>
+          <ul>
+            <li>Unaided purchase intent at $19.99 is soft: <strong>34% top-2 box</strong>.</li>
+            <li>So packaging alone will not sell it — <strong>the demo is the product</strong>.</li>
+            <li>Sample is <strong>81% students</strong>: start campus-adjacent, not national.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 · Business model -->
+    <section class="slide" data-title="Model"
+      data-notes="Stores are the customer. Give them the keystone math out loud — buyers think in margin, not features. Opening order small on purpose: we are buying shelf space, not revenue, in week one.">
+      <div class="eyebrow">How it makes money</div>
+      <h2 class="assert">We sell cases to stores, and the margin math is what closes the buyer.</h2>
+      <div class="split">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Level</th><th>Price</th><th>Who it is for</th></tr></thead>
+            <tbody>
+              <tr><td>Shelf price</td><td><strong>$19.99</strong></td><td>Shopper — on the indifference point</td></tr>
+              <tr><td>Promo floor</td><td>$14.99</td><td>Store latitude on good-value median</td></tr>
+              <tr><td>Wholesale</td><td><strong>$9.99–$10.99</strong></td><td>Buyer — about keystone</td></tr>
+              <tr><td>Landed COGS</td><td class="no">≤ $4–$5</td><td>Us — the gate the quote must clear</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <img class="media" src="pitch/kit-flat.jpg" alt="Unit with lanyard, flat packed" />
+          <div class="caption">Opening order: one case of 12 · reorder by text at 3 left</div>
+        </div>
+      </div>
+      <p class="fine">First doors: campus bookstore, local outdoor, water and fishing shop, high-traffic convenience. After week 4, reorders should outnumber new logos. Economics illustrative until factory quotes land.</p>
+    </section>
+
+    <!-- 10 · Trade-offs -->
+    <section class="slide" data-title="Trade-offs"
+      data-notes="This is the slide most proposals skip and the one that earns trust. Name the costs out loud before anyone asks. Then transition carefully: having heard all three, I still recommend yes.">
+      <div class="eyebrow">What this decision actually costs</div>
+      <h2 class="assert">Three trade-offs the room has to weigh — none of them are free.</h2>
+      <div class="split-33">
+        <div class="panel warn">
+          <h3>1 · Flagship vs. price point</h3>
+          <p>D14 as drawn carries glass and four load cells and models <strong>~$60–$90</strong> landed. That cannot be a $19.99 case pack. We ship a de-featured store SKU and keep the instrumented unit as the demo.</p>
+        </div>
+        <div class="panel warn">
+          <h3>2 · Working capital</h3>
+          <p>Cases bought are cash frozen until they sell through. We pre-sell opening orders before committing a large factory PO — slower start, far smaller hole if we are wrong.</p>
+        </div>
+        <div class="panel warn">
+          <h3>3 · One SKU, not three</h3>
+          <p>Adopting D14 shelves the wallet roll-up and the rigid case family for this window. That is the real cost of focus, and it should be said out loud.</p>
+        </div>
+      </div>
+      <div class="pill-row">
+        <div class="pill">Claim discipline · <em>no IPX8 until certified</em></div>
+        <div class="pill">Ship gate · <em>dunk-pass serials only</em></div>
+      </div>
+    </section>
+
+    <!-- 11 · The close -->
+    <section class="slide" data-title="Decision"
+      data-notes="Read the yes box, then the no box, then stop talking. Silence is the close. Do not fill it.">
+      <div class="eyebrow">Decision</div>
+      <h2 class="assert">Adopt D14 Rolltop as the flagship product.</h2>
+      <div class="vote">
+        <div class="yes">
+          <h3>What changes at yes</h3>
+          <p>
+            We freeze the envelope and send RFQs this week, build dunk-pass demo serials, and walk into the first eight stores with a sample and a sell sheet. A product exists on a shelf inside this window.
+          </p>
+          <div class="pill-row">
+            <div class="pill">RFQ · <em>this week</em></div>
+            <div class="pill">Doors · <em>8–15</em></div>
+            <div class="pill">Proof · <em>dunk-pass</em></div>
+          </div>
+        </div>
+        <div class="no">
+          <h3>What changes at no</h3>
+          <p>
+            We keep a design catalog and a survey. Campus season and the IBC window close with nothing on a shelf, and the evidence we collected goes stale.
+          </p>
+        </div>
+      </div>
+      <p class="fine">Backup follows — press <strong>A</strong> for the appendix (drawing, spec, cost bands, risk register) or <strong>B</strong> for the full Business Model Canvas.</p>
+    </section>
+
+    <!-- ===================== APPENDIX ===================== -->
+
+    <section class="slide" data-section="appendix" data-title="Appendix · Spec"
+      data-notes="Pull this only if asked 'is this actually specified?' Note the open item honestly: the drawing and the manufacturing plan disagree on envelope and mass. That freezes before RFQ.">
+      <div class="appendix-flag">Appendix · pull on request</div>
+      <div class="eyebrow">Engineering freeze · D14-RT-001 Rev A</div>
+      <h2 class="assert" style="font-size:clamp(1.5rem,2.8vw,2.1rem)">The product is specified to a drawing, not a mood board.</h2>
+      <div class="split">
+        <div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Item</th><th>As drawn</th></tr></thead>
+              <tbody>
+                <tr><td>Packed envelope</td><td><strong>220 × 150 × 25 mm</strong></td></tr>
+                <tr><td>Glass window</td><td><strong>100 × 60 mm</strong></td></tr>
+                <tr><td>Weight (est.)</td><td><strong>210 g</strong></td></tr>
+                <tr><td>Body</td><td>TPU-coated 500D aramid</td></tr>
+                <tr><td>Closure</td><td>Roll-and-clamp, 3 folds</td></tr>
+                <tr><td>Hardware</td><td>Side-release buckles ×2</td></tr>
+                <tr><td>Sensing</td><td>4× load cells in bezel</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="fine">Open item: the drawing reads 210 g / 220×150; the manufacturing plan targets 122 g / 175×95 deployed. One envelope must win before RFQ.</p>
+        </div>
+        <div>
+          <img class="media paper" src="pitch/drawing-d14-rt-001.jpg" alt="D14-RT-001 engineering drawing" />
+          <div class="caption">Drawing No. D14-RT-001 · Rev A · 1:1 mm · 24 May 2024</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-section="appendix" data-title="Appendix · Cost"
+      data-notes="If they push on COGS: these are modeled planning bands at plus or minus 30 to 50 percent, not quotes. That is exactly why the ask includes the RFQ.">
+      <div class="appendix-flag">Appendix · pull on request</div>
+      <div class="eyebrow">Cost bands · modeled, not quoted</div>
+      <h2 class="assert" style="font-size:clamp(1.5rem,2.8vw,2.1rem)">Only the de-featured SKU clears keystone at $19.99.</h2>
+      <div class="table-wrap" style="width:min(940px,100%)">
+        <table>
+          <thead><tr><th>Configuration</th><th>Modeled landed @ 250</th><th>Where it can sell</th></tr></thead>
+          <tbody>
+            <tr><td>Store SKU — film window, no sensing</td><td><strong>$4–$5 target</strong></td><td>$19.99 shelf · ~$10 wholesale</td></tr>
+            <tr><td>Custom RF roll-top body only</td><td>$5–$12</td><td>Needs volume to hit target</td></tr>
+            <tr><td>D14 as drawn — glass bezel + 4 cells</td><td class="no">$60–$90</td><td>$29.99–$49.99 or demo-only</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">Source: D14 price estimate model, Sep 2026. Planning bands ±30–50%. Replace with Vancharli / Szoneier / SealWerks quotes before any pricing commitment.</p>
+    </section>
+
+    <section class="slide" data-section="appendix" data-title="Appendix · Risk"
+      data-notes="Risk register. The one that actually kills us is a leak in a store — that is why dunk-pass gating is non-negotiable.">
+      <div class="appendix-flag">Appendix · pull on request</div>
+      <div class="eyebrow">Risk register</div>
+      <h2 class="assert" style="font-size:clamp(1.5rem,2.8vw,2.1rem)">The risk that ends this product is one leak in a store.</h2>
+      <div class="table-wrap" style="width:min(1000px,100%)">
+        <table>
+          <thead><tr><th>Risk</th><th>Response</th></tr></thead>
+          <tbody>
+            <tr><td>A unit leaks in front of a retailer</td><td><strong>Dunk-QC every lot; ship passed serials only</strong></td></tr>
+            <tr><td>Landed cost breaks the margin stack</td><td>Quote gate before any PO — no price promises first</td></tr>
+            <tr><td>Stores will not open a new SKU</td><td>Small trial case + first-case swap offer</td></tr>
+            <tr><td>Cash frozen in unsold inventory</td><td>Pre-sell opening orders before the factory PO</td></tr>
+            <tr><td>Overclaiming waterproof rating</td><td>No IPX8 language until certification exists</td></tr>
+            <tr><td>D2C pulls focus from wholesale</td><td>Social is brand proof only; stores get MAP</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===================== BUSINESS MODEL CANVAS ===================== -->
+
+    <section class="slide bmc-slide" data-section="bmc" data-title="BMC · Canvas"
+      data-notes="Do not read this slide. It is the whole operating model on one page, for the record and for the pre-read. Say: 'this is how the business actually runs behind that product decision — partners, activities, who pays us.' Then point only at the two blocks that matter for the vote: Value Propositions and Revenue Streams.">
+      <div class="bmc-head">
+        <div>
+          <div class="eyebrow" style="margin-bottom:6px">Business Model Canvas · wholesale manufacturer</div>
+          <h2>How the business runs behind the product decision.</h2>
+        </div>
+        <div class="meta">Osterwalder nine-block · end-user evidence n = 47 · IBC window Oct 12 – Dec 16</div>
+      </div>
+      <div class="bmc-stage">
+      <div class="bmc" id="bmc-grid">
+        <div class="bmc-cell kp">
+          <h4>Key Partners</h4>
+          <ul>
+            <li>Contract factory — RF-weld, seals, window film</li>
+            <li>Materials: TPU/PVC, buckles, float foam</li>
+            <li>Freight forwarder + customs broker</li>
+            <li>Packaging / print — hangtag, PDQ display</li>
+            <li>Load-cell vendor — <strong>D14 demo unit only</strong></li>
+            <li>Invoicing / Net-30 terms tooling</li>
+          </ul>
+          <div class="sub" style="margin-top:8px">Why</div>
+          <ul><li>IBC capital favors contract manufacturing over owning a plant</li></ul>
+        </div>
+
+        <div class="bmc-cell ka">
+          <h4>Key Activities</h4>
+          <ul>
+            <li>Source, sample, <strong>dunk-QC every lot</strong></li>
+            <li>Sell sheet + MSRP / MAP sheet</li>
+            <li>Retailer prospecting and in-store pitches</li>
+            <li>Case pack, label, ship POs</li>
+            <li>Reorder support, displays, swaps</li>
+          </ul>
+        </div>
+
+        <div class="bmc-cell kr">
+          <h4>Key Resources</h4>
+          <ul>
+            <li>Case-pack inventory — store SKU</li>
+            <li>Factory relationship + QC protocol</li>
+            <li><strong>D14-RT-001</strong> drawing freeze</li>
+            <li>Sell sheet, line sheet, UPC / SKU system</li>
+            <li>Demo kit: dunk tank + samples</li>
+            <li>~$3k capital · 25-person team</li>
+          </ul>
+        </div>
+
+        <div class="bmc-cell vp">
+          <h4>Value Propositions</h4>
+          <div class="sub">For retailers — the buyer</div>
+          <ul>
+            <li><strong>$19.99 impulse SKU</strong> at about keystone</li>
+            <li>~50% margin at ~$10 wholesale</li>
+            <li>Compact counter / PDQ footprint</li>
+            <li>Dunk demo drives sell-through</li>
+            <li>Simple reorder, low risk opening order</li>
+          </ul>
+          <div class="sub">For shoppers — the end user</div>
+          <ul>
+            <li>Protect phone, wallet, keys near water</li>
+            <li><strong>Use the phone through the window</strong></li>
+            <li>Beats Ziploc and nothing — 62% use nothing</li>
+          </ul>
+          <div class="sub">Shelf claims — survey-ranked</div>
+          <ul>
+            <li>Waterproof · touchscreen · easy open · durable</li>
+          </ul>
+        </div>
+
+        <div class="bmc-cell cr">
+          <h4>Customer Relationships</h4>
+          <ul>
+            <li>Account owner per store cluster</li>
+            <li>Opening order → biweekly reorder check-in</li>
+            <li>COD first PO; Net-15 / 30 once trusted</li>
+            <li>First-case swap offer</li>
+            <li>Co-op in-store dunk demo day</li>
+          </ul>
+        </div>
+
+        <div class="bmc-cell ch">
+          <h4>Channels</h4>
+          <ul>
+            <li>Direct wholesale — door-to-door pitches</li>
+            <li>Buyer appointments with sample + sell sheet</li>
+            <li>In-store demo days for pull-through</li>
+            <li>Local delivery / case drop-ship</li>
+            <li>Reorder by text</li>
+            <li>D2C — brand proof only, not revenue</li>
+          </ul>
+        </div>
+
+        <div class="bmc-cell cs">
+          <h4>Customer Segments</h4>
+          <div class="sub">Customer = the store</div>
+          <ul>
+            <li>Campus bookstore / student market</li>
+            <li>Independent outdoor &amp; sporting goods</li>
+            <li>Water-sport shops — kayak, fishing, marina</li>
+            <li>Travel / pharmacy impulse aisles (later)</li>
+          </ul>
+          <div class="sub">Buyer persona</div>
+          <ul>
+            <li>Owner seeking summer impulse + giftables</li>
+            <li>Needs proven MSRP, margin, easy reorder</li>
+          </ul>
+          <div class="sub">End user the store serves</div>
+          <ul>
+            <li>Students and recreators; swim, travel, boat</li>
+            <li>Damage-yes shoppers hottest — 3.27 vs 2.76</li>
+          </ul>
+        </div>
+
+        <div class="bmc-cell cost money">
+          <h4>Cost Structure</h4>
+          <ul>
+            <li>Store-SKU pouch + packaging — <strong>must land ≤ $4–$5</strong></li>
+            <li>Inbound freight, duties, QC scrap</li>
+            <li>Outbound delivery to stores</li>
+            <li>Displays, hangtags, samples</li>
+            <li>Sales time, demo kit, event cost</li>
+            <li>Returns / swap reserve</li>
+            <li>Working capital tied in inventory</li>
+            <li>D14 NRE — bezel, glass, cells: P1, not case COGS</li>
+          </ul>
+        </div>
+
+        <div class="bmc-cell rev money">
+          <h4>Revenue Streams</h4>
+          <ul>
+            <li><strong>Wholesale case sales</strong> — the core</li>
+            <li>Opening orders — trial cases of 12</li>
+            <li><strong>Reorders</strong> — recurring revenue</li>
+            <li>Paid PDQ / display kits</li>
+            <li>Seasonal prepacks — swim, travel</li>
+            <li>Limited D2C for brand proof</li>
+            <li>$19.99 MSRP → $9.99–$10.99 wholesale</li>
+            <li>Case of 12 or 24</li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      <p class="fine" style="margin-top:8px">The model only works if store-SKU landed cost leaves ≥50% for the retailer and healthy contribution at ~$10 wholesale. D14-RT-001 NRE sits on the P1 approval, not in case COGS.</p>
+    </section>
+
+    <section class="slide" data-section="bmc" data-title="BMC · Survey to decisions"
+      data-notes="This is the bridge slide between the survey and the business model. Every row is a decision we did not make by taste. If someone challenges the model, come here.">
+      <div class="eyebrow">Survey → business-model decisions · n = 47</div>
+      <h2 class="assert" style="font-size:clamp(1.4rem,2.6vw,2rem)">Every block of that canvas traces back to a survey finding.</h2>
+      <div class="table-wrap" style="width:min(1060px,100%)">
+        <table>
+          <thead><tr><th style="width:44%">End-user finding</th><th>What it decided in the model</th></tr></thead>
+          <tbody>
+            <tr><td>Price band $15–$25; indifference ≈ $20</td><td><strong>MSRP $19.99</strong>; promo latitude to ~$14.99</td></tr>
+            <tr><td>Waterproof #1; touchscreen the differentiator</td><td>Hangtag and sell sheet lead with four claims only</td></tr>
+            <tr><td>62% use nothing; 19% carry non-waterproof gear</td><td>Shelf story is vs. nothing and Ziploc — not vs. dry bags</td></tr>
+            <tr><td>Damage-yes shoppers score hotter (3.27 vs 2.76)</td><td>Clerk script opens “ever ruined a phone?” + dunk video</td></tr>
+            <tr><td>Soft unaided intent — 34% top-2 at $19.99</td><td>Demo-day pull-through; packaging alone will not carry it</td></tr>
+            <tr><td>Sample is 81% students</td><td>Campus-adjacent doors first, regional chains later</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">Framework: Osterwalder Business Model Canvas · Go-to-market: B2B wholesale manufacturer · Economics illustrative until factory quotes lock COGS.</p>
+    </section>
+
+  </div>
+
+  <div class="notes" id="notes">
+    <div class="label">Presenter note</div>
+    <p id="notes-body"></p>
+  </div>
+
+  <div class="footer-bar">
+    <div class="progress" id="progress"></div>
+    <div id="section-label">PocketVault · D14 Rolltop · Product proposal · Confidential</div>
+    <div class="nav-hint">
+      <kbd>←</kbd> <kbd>→</kbd> · <kbd>N</kbd> notes · <kbd>A</kbd> appx · <kbd>B</kbd> canvas · <kbd>F</kbd> full ·
+      <span id="counter">1 / 11</span>
+    </div>
+  </div>
+
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    const SECTIONS = {
+      core: { label: "PocketVault · D14 Rolltop · Product proposal · Confidential", name: "" },
+      appendix: { label: "Appendix · supporting detail · pull on request", name: "Appendix" },
+      bmc: { label: "Business Model Canvas · the operating model behind the product", name: "Canvas" }
+    };
+    const sectionOf = (s) => s.dataset.section || "core";
+    const indexIn = {};
+    const totalIn = {};
+    slides.forEach((s) => {
+      const k = sectionOf(s);
+      totalIn[k] = (totalIn[k] || 0) + 1;
+      indexIn[slides.indexOf(s)] = totalIn[k];
+    });
+    const CORE = totalIn.core;
+    const firstOf = (k) => slides.findIndex((s) => sectionOf(s) === k);
+
+    let i = 0;
+    let notesOpen = false;
+
+    const notesEl = document.getElementById("notes");
+    const notesBody = document.getElementById("notes-body");
+    const label = document.getElementById("section-label");
+
+    function syncNotes() {
+      notesBody.textContent = slides[i].dataset.notes || "";
+      notesEl.classList.toggle("show", notesOpen && !!slides[i].dataset.notes);
+    }
+
+    const bmcGrid = document.getElementById("bmc-grid");
+    function fitBmc() {
+      if (!bmcGrid) return;
+      const stage = bmcGrid.parentElement;
+      const box = stage.getBoundingClientRect();
+      if (!box.width || !box.height) return;
+      const scale = Math.min(box.width / 1240, box.height / 560, 1.35);
+      bmcGrid.style.transform = `scale(${scale})`;
+    }
+
+    function show(n) {
+      i = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
+      const key = sectionOf(slides[i]);
+      const sec = SECTIONS[key];
+      document.getElementById("counter").textContent = sec.name
+        ? `${sec.name} ${indexIn[i]} / ${totalIn[key]}`
+        : `${indexIn[i]} / ${CORE}`;
+      label.textContent = sec.label;
+      document.getElementById("progress").style.width =
+        `${((key === "core" ? indexIn[i] : CORE) / CORE) * 100}%`;
+      history.replaceState(null, "", `#${i + 1}`);
+      syncNotes();
+      if (key === "bmc") requestAnimationFrame(fitBmc);
+    }
+    window.addEventListener("resize", fitBmc);
+    function next() { show(i + 1); }
+    function prev() { show(i - 1); }
+
+    document.addEventListener("keydown", (e) => {
+      if (["ArrowRight", "ArrowDown", " ", "PageDown", "Enter"].includes(e.key)) { e.preventDefault(); next(); }
+      else if (["ArrowLeft", "ArrowUp", "PageUp", "Backspace"].includes(e.key)) { e.preventDefault(); prev(); }
+      else if (e.key === "Home") show(0);
+      else if (e.key === "End") show(slides.length - 1);
+      else if (e.key === "a" || e.key === "A") show(firstOf("appendix"));
+      else if (e.key === "b" || e.key === "B") show(firstOf("bmc"));
+      else if (e.key === "n" || e.key === "N") { notesOpen = !notesOpen; syncNotes(); }
+      else if (e.key === "f" || e.key === "F") {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+        else document.exitFullscreen?.();
+      }
+    });
+    document.getElementById("deck").addEventListener("click", (e) => {
+      if (e.target.closest("a")) return;
+      if (e.clientX >= window.innerWidth / 2) next(); else prev();
+    });
+
+    const start = Math.max(0, parseInt(location.hash.replace("#", ""), 10) - 1 || 0);
+    show(start);
+  </script>
+</body>
+</html>

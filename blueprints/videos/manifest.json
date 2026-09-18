@@ -1,0 +1,59 @@
+{
+  "fps": 30,
+  "size": [
+    1280,
+    720
+  ],
+  "videos": [
+    {
+      "file": "01-overview-reel.mp4",
+      "seconds": 10.0,
+      "frames": 300
+    },
+    {
+      "file": "02-A-force-touch.mp4",
+      "seconds": 6.0,
+      "frames": 180
+    },
+    {
+      "file": "03-B5-hall-glove.mp4",
+      "seconds": 6.0,
+      "frames": 180
+    },
+    {
+      "file": "04-B6-stylus-emr.mp4",
+      "seconds": 6.0,
+      "frames": 180
+    },
+    {
+      "file": "05-B7-lamb-wave.mp4",
+      "seconds": 5.0,
+      "frames": 150
+    },
+    {
+      "file": "06-B8-resistive.mp4",
+      "seconds": 5.0,
+      "frames": 150
+    },
+    {
+      "file": "07-C10-crownpad.mp4",
+      "seconds": 5.0,
+      "frames": 150
+    },
+    {
+      "file": "08-C12-tilt-cursor.mp4",
+      "seconds": 5.0,
+      "frames": 150
+    },
+    {
+      "file": "09-D15-oilfill-100.mp4",
+      "seconds": 6.0,
+      "frames": 180
+    },
+    {
+      "file": "10-D16-floatline.mp4",
+      "seconds": 5.0,
+      "frames": 150
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PocketVault · D14 Rolltop · Product Brief</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Sora:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #102024;
+      --muted: #5a6e72;
+      --line: #c5d0d3;
+      --accent: #1a6b5c;
+      --paper: #f3f6f7;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: Sora, system-ui, sans-serif;
+      color: var(--ink);
+      background: #cfd8db;
+      padding: 24px;
+      line-height: 1.4;
+    }
+    .sheet {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--paper);
+      padding: 28px 32px 24px;
+      border: 1px solid #b8c5c9;
+    }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .sheet { border: 0; max-width: none; padding: 12mm; }
+      .noprint { display: none !important; }
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.65rem;
+      letter-spacing: -0.02em;
+    }
+    .meta { color: var(--muted); font-size: 0.78rem; text-align: right; }
+    .ask {
+      background: #e4f0ec;
+      border-left: 4px solid var(--accent);
+      padding: 10px 12px;
+      margin: 12px 0 16px;
+      font-size: 0.92rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .stat {
+      border: 1px solid #c5d0d3;
+      padding: 8px 10px;
+      background: #fff;
+    }
+    .stat b { display: block; font-family: Fraunces, Georgia, serif; font-size: 1.25rem; }
+    .stat span { font-size: 0.68rem; color: var(--muted); }
+    h2 {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin: 14px 0 6px;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    th, td { border-bottom: 1px solid #c5d0d3; padding: 5px 6px; text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .cols { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; }
+    ul { padding-left: 1.1em; font-size: 0.8rem; }
+    li { margin: 3px 0; }
+    .foot {
+      margin-top: 14px;
+      padding-top: 8px;
+      border-top: 1px solid #c5d0d3;
+      font-size: 0.7rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .sign {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      font-size: 0.75rem;
+    }
+    .sign div {
+      border-top: 1px solid #102024;
+      padding-top: 6px;
+      min-height: 48px;
+    }
+    .btn {
+      display: inline-block;
+      margin-bottom: 12px;
+      margin-right: 8px;
+      padding: 8px 12px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      border-radius: 4px;
+    }
+    .hero {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      object-position: center 40%;
+      border: 1px solid #c5d0d3;
+      margin-bottom: 12px;
+      background: #102024;
+    }
+  </style>
+</head>
+<body>
+  <a class="btn noprint" href="d14-product-pitch.html">Open presentation deck</a>
+  <a class="btn noprint" href="#" onclick="window.print();return false;" style="background:#102024">Print leave-behind</a>
+
+  <article class="sheet">
+    <div class="top">
+      <div>
+        <h1>PocketVault · D14 Rolltop</h1>
+        <div style="color:var(--muted);font-size:0.8rem;margin-top:4px">Product proposal · one page · bring to the decision</div>
+      </div>
+      <div class="meta">
+        PocketVault · BYU-Idaho IBC<br />
+        Confidential · Sep 2026<br />
+        Window: Oct 12 – Dec 16
+      </div>
+    </div>
+
+    <img class="hero" src="pitch/hero-ui.png" alt="D14 Rolltop" />
+
+    <div class="ask">
+      <strong>DECISION REQUESTED:</strong> Adopt <strong>D14 Rolltop</strong> as PocketVault’s flagship product — a phone-usable waterproof pouch sold wholesale to retail stores — and fund the RFQ plus dunk-pass demo units. Target: <strong>8–15 stores live by Dec 16</strong> at $19.99 MSRP / ~$10 wholesale.
+    </div>
+
+    <div class="grid">
+      <div class="stat"><b>$19.99</b><span>Suggested MSRP</span></div>
+      <div class="stat"><b>~$10</b><span>Target wholesale</span></div>
+      <div class="stat"><b>55% / 62%</b><span>Damage / use nothing</span></div>
+      <div class="stat"><b>8–15</b><span>Doors this window</span></div>
+    </div>
+
+    <h2>What changes at yes / at no</h2>
+    <table>
+      <tbody>
+        <tr><td style="width:12%"><strong>YES</strong></td><td>Envelope freezes, RFQs go out this week, dunk-pass demo serials get built, and we walk into the first eight stores with a sample and a sell sheet. A product exists on a shelf inside this window.</td></tr>
+        <tr><td><strong>NO</strong></td><td>We keep a design catalog and a survey. Campus season and the IBC window close with nothing on a shelf, and the customer evidence goes stale.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Trade-offs to weigh</h2>
+    <table>
+      <thead><tr><th>Trade-off</th><th>Our response</th></tr></thead>
+      <tbody>
+        <tr><td>D14 as drawn (glass + 4 load cells) models ~$60–$90 landed — it cannot be the $19.99 case pack</td><td>Ship a de-featured store SKU; keep the instrumented unit as the dunk demo</td></tr>
+        <tr><td>Cases bought are cash frozen until sell-through</td><td>Pre-sell opening orders before committing a large factory PO</td></tr>
+        <tr><td>Adopting D14 shelves the wallet roll-up and rigid case family this window</td><td>Accepted — this is the cost of focus, stated plainly</td></tr>
+      </tbody>
+    </table>
+
+    <div class="cols">
+      <div>
+        <h2>The product</h2>
+        <ul>
+          <li>Soft TPU-aramid body, rigid glass bezel, 3-fold roll-and-clamp.</li>
+          <li>Use the phone through the window. Packs flat with lanyard.</li>
+          <li>Drawing <strong>D14-RT-001</strong> · packed 220×150×25 mm · ~210 g.</li>
+        </ul>
+        <h2>Customer evidence (n = 47)</h2>
+        <ul>
+          <li>Hangtag: waterproof · touchscreen · easy open · durable.</li>
+          <li>Price band $15–$25; indifference ≈ $20 → MSRP $19.99.</li>
+          <li>Soft unaided intent → in-store dunk demo is required.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Who we sell to</h2>
+        <ul>
+          <li>Primary customer = <strong>the store</strong>, not Instagram.</li>
+          <li>Competitor is a Ziploc and “I’ll be careful” — not an $80 dry bag.</li>
+          <li>First doors: campus bookstore, outdoor, water shop, convenience.</li>
+          <li>Opening order: case of 12. Reorder by text at 3 left.</li>
+        </ul>
+        <h2>Known weaknesses (stated up front)</h2>
+        <ul>
+          <li>Unaided intent at $19.99 is soft: <strong>34% top-2</strong> → demo-led selling, not packaging.</li>
+          <li>Sample is <strong>81% students</strong> → campus-adjacent doors first.</li>
+          <li>Economics are modeled ±30–50%, not quoted. The RFQ is part of the ask.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Next 30 days if approved</h2>
+    <table>
+      <thead><tr><th>Action</th><th>Owner</th><th>Done when</th></tr></thead>
+      <tbody>
+        <tr><td>Freeze envelope (drawing vs 122 g plan)</td><td>Engineering</td><td>One spec sheet on RFQ</td></tr>
+        <tr><td>RFQ Path B pouch + D14 flagship</td><td>Ops</td><td>3 quotes in hand</td></tr>
+        <tr><td>Sell sheet + MSRP/MAP + dunk video</td><td>Sales</td><td>Buyer packet ready</td></tr>
+        <tr><td>First 8 store pitches</td><td>Sales pod</td><td>Opening POs or written nos</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sign">
+      <div>Approver name / role<br /><span style="color:var(--muted)">Signature</span></div>
+      <div>Date<br /><span style="color:var(--muted)">________ / ________ / ________</span></div>
+      <div>Decision<br />☐ Adopt D14 &nbsp; ☐ Hold &nbsp; ☐ Reject</div>
+    </div>
+
+    <div class="foot">
+      <span>Deck: d14-product-pitch.html · Notes: manufacturing/D14-PRODUCT-PITCH-NOTES.md</span>
+      <span>Concept renders · economics illustrative until factory quotes</span>
+    </div>
+  </article>
+</body>
+</html>

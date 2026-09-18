@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D14 Rolltop · Approval Brief</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Sora:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #102024;
+      --muted: #5a6e72;
+      --line: #c5d0d3;
+      --accent: #1a6b5c;
+      --paper: #f3f6f7;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: Sora, system-ui, sans-serif;
+      color: var(--ink);
+      background: #cfd8db;
+      padding: 24px;
+      line-height: 1.4;
+    }
+    .sheet {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--paper);
+      padding: 28px 32px 24px;
+      border: 1px solid #b8c5c9;
+    }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .sheet { border: 0; max-width: none; padding: 12mm; }
+      .noprint { display: none !important; }
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.65rem;
+      letter-spacing: -0.02em;
+    }
+    .meta { color: var(--muted); font-size: 0.78rem; text-align: right; }
+    .ask {
+      background: #e4f0ec;
+      border-left: 4px solid var(--accent);
+      padding: 10px 12px;
+      margin: 12px 0 16px;
+      font-size: 0.92rem;
+    }
+    .ask strong { color: var(--accent); }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .stat {
+      border: 1px solid #c5d0d3;
+      padding: 8px 10px;
+      background: #fff;
+    }
+    .stat b { display: block; font-family: Fraunces, Georgia, serif; font-size: 1.25rem; }
+    .stat span { font-size: 0.68rem; color: var(--muted); }
+    h2 {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin: 14px 0 6px;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    th, td { border-bottom: 1px solid #c5d0d3; padding: 5px 6px; text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .cols { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; }
+    ul { padding-left: 1.1em; font-size: 0.8rem; }
+    li { margin: 3px 0; }
+    .foot {
+      margin-top: 14px;
+      padding-top: 8px;
+      border-top: 1px solid #c5d0d3;
+      font-size: 0.7rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .sign {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      font-size: 0.75rem;
+    }
+    .sign div {
+      border-top: 1px solid #102024;
+      padding-top: 6px;
+      min-height: 48px;
+    }
+    .btn {
+      display: inline-block;
+      margin-bottom: 12px;
+      margin-right: 8px;
+      padding: 8px 12px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <a class="btn noprint" href="d14-approval.html">Open full presentation deck</a>
+  <a class="btn noprint" href="#" onclick="window.print();return false;" style="background:#102024">Print leave-behind</a>
+
+  <article class="sheet">
+    <div class="top">
+      <div>
+        <h1>D14 Rolltop · Manufacturing Approval Brief</h1>
+        <div style="color:var(--muted);font-size:0.8rem;margin-top:4px">Decision packet · one page · bring to the vote</div>
+      </div>
+      <div class="meta">
+        Nereid Program<br />
+        Confidential · Rev A<br />
+        Meeting: manufacturing authorization
+      </div>
+    </div>
+
+    <div class="ask">
+      <strong>MOTION:</strong> Authorize <strong>Phase P1</strong> — CNC/soft-tool bezels (8–12), RF-weld TPU-aramid bodies, window + load-cell stack, and dunk proof at 1.5× design depth — budget ceiling <strong>$18,000</strong> (planning midpoint ~$11,000), 5-week go/no-go. Production molds/dies and inventory require a separate later vote.
+    </div>
+
+    <div class="grid">
+      <div class="stat"><b>6 m</b><span>Design depth</span></div>
+      <div class="stat"><b>122 g</b><span>Mass target</span></div>
+      <div class="stat"><b>~40%</b><span>Packed vs rigid</span></div>
+      <div class="stat"><b>≥5</b><span>Units must dunk-pass</span></div>
+    </div>
+
+    <div class="cols">
+      <div>
+        <h2>Why D14</h2>
+        <ul>
+          <li>Only catalog design that <strong>packs flat</strong> — soft body + rigid force-sensed window.</li>
+          <li>Solves availability: comes in the bag; three rolls + buckle seal.</li>
+          <li>Survey-aligned: waterproof + <strong>touch through glass</strong> (4 load cells).</li>
+        </ul>
+        <h2>Evidence already in hand</h2>
+        <ul>
+          <li>CAD: <code>models/D14/</code> bezel · window · fabric pattern</li>
+          <li>Full BOM, mass stack, 9-phase process, work instructions</li>
+          <li>HQ visuals + product film + deployment sequence</li>
+        </ul>
+      </div>
+      <div>
+        <h2>P1 success / kill</h2>
+        <ul>
+          <li><strong>Success:</strong> ≥5 units dunk-pass 1.5×; peel + fold logs signed.</li>
+          <li><strong>Kill:</strong> flange leak or fold cannot seal → stop before production tooling.</li>
+        </ul>
+        <h2>Not approved by this vote</h2>
+        <ul>
+          <li>Production bezel injection mold</li>
+          <li>100–250 unit inventory buy</li>
+          <li>IPX8 / “military waterproof” claims</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Budget ceiling breakdown (bands)</h2>
+    <table>
+      <thead><tr><th>Line</th><th>Band</th></tr></thead>
+      <tbody>
+        <tr><td>CNC / soft-tool bezels 8–12</td><td>$1.5k–$4k</td></tr>
+        <tr><td>Fabric + RF weld shop / fixtures</td><td>$1.5k–$4k</td></tr>
+        <tr><td>Glass + load cells + seals</td><td>$1.2k–$3k</td></tr>
+        <tr><td>Buckles / roll hardware</td><td>$0.3k–$0.8k</td></tr>
+        <tr><td>Dunk access</td><td>$0.4k–$1.5k</td></tr>
+        <tr><td>Electronics bring-up</td><td>$1.5k–$4k</td></tr>
+        <tr><td>Labor + contingency</td><td>$1k–$2.5k</td></tr>
+        <tr><td><strong>Ceiling</strong></td><td><strong>$18k</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h2>Top risks &amp; P1 mitigations</h2>
+    <table>
+      <thead><tr><th>Risk</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr><td>RF weld pinholes</td><td>Peel coupons every lot; dye-pen flange</td></tr>
+        <tr><td>User under-rolls</td><td>Stencil fold marks + &lt;15 s training card</td></tr>
+        <tr><td>Bezel edge impact</td><td>Edge bumper options; drop sample matrix</td></tr>
+        <tr><td>Weak wet touch</td><td>Load-cell cal in dunk; gloved reject gate</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sign">
+      <div>Approver name / role<br /><span style="color:var(--muted)">Signature</span></div>
+      <div>Date<br /><span style="color:var(--muted)">________ / ________ / ________</span></div>
+      <div>Decision<br />☐ Approve P1 &nbsp; ☐ Hold &nbsp; ☐ Reject</div>
+    </div>
+
+    <div class="foot">
+      <span>Full plan: manufacturing/D14-Rolltop-Manufacturing-Plan.md · Deck: d14-approval.html</span>
+      <span>Not a certification filing · Prototype authorization only</span>
+    </div>
+  </article>
+</body>
+</html>

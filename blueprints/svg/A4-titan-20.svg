@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 718.8000000000001 308.4" width="718.8000000000001" height="308.4">
+  <rect width="100%" height="100%" fill="#f4f1ea" />
+  <text x="20" y="18" font-size="12" font-weight="600" font-family="sans-serif" fill="#1a1a1a">A4 · TITAN-20</text>
+  <text x="20" y="30" font-size="8" font-family="sans-serif" fill="#666">FRONT ELEVATION — ~2.2 px/mm · Nereid Rev A</text>
+  <rect x="40" y="36" width="378.40000000000003" height="202.4" fill="#fff" stroke="#1a1a1a" stroke-width="1.6" />
+  <rect x="68.6" y="62.39999999999999" width="321.20000000000005" height="149.60000000000002" fill="#e8ece8" stroke="#1a1a1a" stroke-width="1.1" />
+  <text x="229.20000000000002" y="137.2" text-anchor="middle" font-size="9" fill="#555" font-family="sans-serif">Mg-aluminate spinel</text>
+  
+        <circle cx="76.6" cy="70.39999999999999" r="3.5" fill="none" stroke="#1a1a1a" />
+        <circle cx="381.80000000000007" cy="70.39999999999999" r="3.5" fill="none" stroke="#1a1a1a" />
+        <circle cx="76.6" cy="204" r="3.5" fill="none" stroke="#1a1a1a" />
+        <circle cx="381.80000000000007" cy="204" r="3.5" fill="none" stroke="#1a1a1a" />
+      
+  
+    <line x1="40" y1="238.4" x2="40" y2="252.4" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="418.40000000000003" y1="238.4" x2="418.40000000000003" y2="252.4" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="40" y1="252.4" x2="418.40000000000003" y2="252.4" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="229.20000000000002" y="264.4" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">172 mm</text>
+  
+  
+    <line x1="418.40000000000003" y1="36" x2="432.40000000000003" y2="36" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="418.40000000000003" y1="238.4" x2="432.40000000000003" y2="238.4" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="432.40000000000003" y1="36" x2="432.40000000000003" y2="238.4" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="440.40000000000003" y="141.2" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">92 mm</text>
+  
+  
+    <line x1="68.6" y1="62.39999999999999" x2="68.6" y2="52.39999999999999" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="389.80000000000007" y1="62.39999999999999" x2="389.80000000000007" y2="52.39999999999999" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="68.6" y1="52.39999999999999" x2="389.80000000000007" y2="52.39999999999999" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="229.20000000000005" y="48.39999999999999" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">AP 146 mm</text>
+  
+  <text x="488.40000000000003" y="30" font-size="9" font-weight="600" fill="#1a1a1a" font-family="sans-serif">SECTION STACK</text>
+  <rect x="488.40000000000003" y="46" width="70.4" height="8.8" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="566.8000000000001" y="53.4" fill="#333" font-size="9" font-family="sans-serif">Shell</text><rect x="488.40000000000003" y="54.8" width="70.4" height="4" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="566.8000000000001" y="59.8" fill="#333" font-size="9" font-family="sans-serif">Seal</text><rect x="488.40000000000003" y="58.8" width="70.4" height="14.520000000000003" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="566.8000000000001" y="69.06" fill="#333" font-size="9" font-family="sans-serif">Window 2.2mm</text><rect x="488.40000000000003" y="73.32" width="70.4" height="14" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="566.8000000000001" y="83.32" fill="#333" font-size="9" font-family="sans-serif">Air pocket</text><rect x="488.40000000000003" y="87.32" width="70.4" height="18" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="566.8000000000001" y="99.32" fill="#333" font-size="9" font-family="sans-serif">Phone</text><rect x="488.40000000000003" y="105.32" width="70.4" height="10" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="566.8000000000001" y="113.32" fill="#333" font-size="9" font-family="sans-serif">Back</text>
+  
+    <line x1="488.40000000000003" y1="46" x2="488.40000000000003" y2="38" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="558.8000000000001" y1="46" x2="558.8000000000001" y2="38" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="488.40000000000003" y1="38" x2="558.8000000000001" y2="38" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="523.6" y="34" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">32 mm H</text>
+  
+  <text x="20" y="280.4" font-size="8" fill="#444" font-family="sans-serif">Shell: Ti-6Al-4V bezel + back · Mount: silicone diaphragm hi-preload</text>
+  <text x="20" y="292.4" font-size="8" fill="#444" font-family="sans-serif">Depth 20 m · 205 g · Load cell</text>
+  <rect x="568.8000000000001" y="266.4" width="130" height="30" fill="none" stroke="#1a1a1a" stroke-width="0.8" />
+  <text x="578.8000000000001" y="280.4" font-size="8" fill="#1a1a1a" font-family="sans-serif">NEREID PROGRAM</text>
+  <text x="578.8000000000001" y="292.4" font-size="8" fill="#1a1a1a" font-family="sans-serif">DWG A4-00 · REV A</text>
+</svg>

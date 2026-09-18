@@ -1,0 +1,3 @@
+[build]
+  publish = "blueprints"
+  command = "echo Static blueprints"

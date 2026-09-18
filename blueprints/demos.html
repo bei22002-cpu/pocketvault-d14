@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nereid · Working Demos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Sora:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #071116;
+      --panel: #0e1c24;
+      --ink: #e7f0f2;
+      --muted: #8aa0a8;
+      --line: rgba(231,240,242,0.12);
+      --accent: #2ec4a8;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: Sora, system-ui, sans-serif;
+      background: radial-gradient(900px 500px at 10% -10%, rgba(46,196,168,0.14), transparent), var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    header {
+      padding: 28px 32px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    header h1 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 2rem;
+      letter-spacing: -0.02em;
+    }
+    header p { color: var(--muted); margin-top: 8px; max-width: 60ch; }
+    .links { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .links a {
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+    .links a:hover { border-color: var(--accent); color: var(--accent); }
+    main {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: calc(100vh - 120px);
+    }
+    @media (max-width: 900px) {
+      main { grid-template-columns: 1fr; }
+    }
+    nav {
+      border-right: 1px solid var(--line);
+      padding: 16px 12px;
+      background: #050d11;
+    }
+    nav button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: 0;
+      color: var(--ink);
+      padding: 10px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.88rem;
+      margin-bottom: 4px;
+    }
+    nav button:hover { background: var(--panel); }
+    nav button.active { background: var(--accent); color: #042019; font-weight: 600; }
+    .stage { padding: 20px 24px 40px; }
+    video {
+      width: 100%;
+      max-height: calc(100vh - 220px);
+      background: #000;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+    }
+    .meta { margin-top: 14px; color: var(--muted); font-size: 0.9rem; }
+    .meta strong { color: var(--ink); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Nereid · Working demos</h1>
+    <p>
+      Simulated underwater interface behavior for the catalog — force touch, Hall glove,
+      EMR stylus, Lamb waves, resistive contact, controls, tilt cursor, oilfill depth, and float recovery.
+    </p>
+    <div class="links">
+      <a class="primary" href="loved.html">Products &amp; customer love</a>
+      <a href="products.html">Product shots</a>
+      <a href="present.html">Presentation</a>
+      <a href="index.html">Full catalog</a>
+      <a href="PRINT_GUIDE.md">Print guide</a>
+    </div>
+  </header>
+  <main>
+    <nav id="nav"></nav>
+    <section class="stage">
+      <video id="player" controls autoplay playsinline></video>
+      <div class="meta" id="meta"></div>
+    </section>
+  </main>
+  <script>
+    const videos = [
+      { file: "01-overview-reel.mp4", title: "Overview reel", blurb: "Ten-second tour of the sensing modalities." },
+      { file: "02-A-force-touch.mp4", title: "A · Force touch", blurb: "Corner load cells → XY solve → Z-click through water." },
+      { file: "03-B5-hall-glove.mp4", title: "B5 Hall-Glove", blurb: "Magnet fingertip tracked on an 8×16 Hall grid." },
+      { file: "04-B6-stylus-emr.mp4", title: "B6 Stylus-EMR", blurb: "Hover + pressure while sketching underwater." },
+      { file: "05-B7-lamb-wave.mp4", title: "B7 Lamb-Wave", blurb: "Tap ripples through bare glass; piezos at the edges." },
+      { file: "06-B8-resistive.mp4", title: "B8 Resistive", blurb: "Physical layer contact — water cannot fake a press." },
+      { file: "07-C10-crownpad.mp4", title: "C10 Crownpad", blurb: "Encoder, hat, and keys — discrete HID only." },
+      { file: "08-C12-tilt-cursor.mp4", title: "C12 Tilt-Cursor", blurb: "Wrist IMU drives the cursor; trigger clicks." },
+      { file: "09-D15-oilfill-100.mp4", title: "D15 Oilfill-100", blurb: "Descent to 100 m with ΔP ≈ 0 and companion OLED." },
+      { file: "10-D16-floatline.mp4", title: "D16 Floatline", blurb: "Drop the case — foam collar brings it back." },
+    ];
+
+    let current = 0;
+    const player = document.getElementById("player");
+    const nav = document.getElementById("nav");
+    const meta = document.getElementById("meta");
+
+    function load(i) {
+      current = i;
+      const v = videos[i];
+      player.src = `videos/${v.file}`;
+      player.play().catch(() => {});
+      meta.innerHTML = `<strong>${v.title}</strong> — ${v.blurb}`;
+      [...nav.querySelectorAll("button")].forEach((b, idx) => b.classList.toggle("active", idx === i));
+    }
+
+    nav.innerHTML = videos.map((v, i) =>
+      `<button data-i="${i}">${v.title}</button>`
+    ).join("");
+    nav.querySelectorAll("button").forEach((b) => b.addEventListener("click", () => load(+b.dataset.i)));
+
+    player.addEventListener("ended", () => {
+      if (current < videos.length - 1) load(current + 1);
+    });
+
+    load(0);
+  </script>
+</body>
+</html>

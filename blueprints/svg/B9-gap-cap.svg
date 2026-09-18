@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 696.8000000000001 299.6" width="696.8000000000001" height="299.6">
+  <rect width="100%" height="100%" fill="#f4f1ea" />
+  <text x="20" y="18" font-size="12" font-weight="600" font-family="sans-serif" fill="#1a1a1a">B9 · GAP-CAP</text>
+  <text x="20" y="30" font-size="8" font-family="sans-serif" fill="#666">FRONT ELEVATION — ~2.2 px/mm · Nereid Rev A</text>
+  <rect x="40" y="36" width="369.6" height="193.60000000000002" fill="#fff" stroke="#1a1a1a" stroke-width="1.6" />
+  <rect x="62" y="55.80000000000001" width="325.6" height="154" fill="#e8ece8" stroke="#1a1a1a" stroke-width="1.1" />
+  <text x="224.8" y="132.8" text-anchor="middle" font-size="9" fill="#555" font-family="sans-serif">Glass</text>
+  
+  
+    <line x1="40" y1="229.60000000000002" x2="40" y2="243.60000000000002" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="409.6" y1="229.60000000000002" x2="409.6" y2="243.60000000000002" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="40" y1="243.60000000000002" x2="409.6" y2="243.60000000000002" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="224.8" y="255.60000000000002" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">168 mm</text>
+  
+  
+    <line x1="409.6" y1="36" x2="423.6" y2="36" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="409.6" y1="229.60000000000002" x2="423.6" y2="229.60000000000002" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="423.6" y1="36" x2="423.6" y2="229.60000000000002" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="431.6" y="136.8" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">88 mm</text>
+  
+  
+    <line x1="62" y1="55.80000000000001" x2="62" y2="45.80000000000001" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="387.6" y1="55.80000000000001" x2="387.6" y2="45.80000000000001" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="62" y1="45.80000000000001" x2="387.6" y2="45.80000000000001" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="224.8" y="41.80000000000001" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">AP 148 mm</text>
+  
+  <text x="479.6" y="30" font-size="9" font-weight="600" fill="#1a1a1a" font-family="sans-serif">SECTION STACK</text>
+  <rect x="479.6" y="46" width="57.2" height="8" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="544.8000000000001" y="53" fill="#333" font-size="9" font-family="sans-serif">Shell</text><rect x="479.6" y="54" width="57.2" height="4" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="544.8000000000001" y="59" fill="#333" font-size="9" font-family="sans-serif">Seal</text><rect x="479.6" y="58" width="57.2" height="9.9" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="544.8000000000001" y="65.95" fill="#333" font-size="9" font-family="sans-serif">Window 1.5mm</text><rect x="479.6" y="67.9" width="57.2" height="14" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="544.8000000000001" y="77.9" fill="#333" font-size="9" font-family="sans-serif">Air pocket</text><rect x="479.6" y="81.9" width="57.2" height="18" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="544.8000000000001" y="93.9" fill="#333" font-size="9" font-family="sans-serif">Phone</text><rect x="479.6" y="99.9" width="57.2" height="10" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="544.8000000000001" y="107.9" fill="#333" font-size="9" font-family="sans-serif">Back</text>
+  
+    <line x1="479.6" y1="46" x2="479.6" y2="38" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="536.8000000000001" y1="46" x2="536.8000000000001" y2="38" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="479.6" y1="38" x2="536.8000000000001" y2="38" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="508.20000000000005" y="34" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">26 mm H</text>
+  
+  <text x="20" y="271.6" font-size="8" fill="#444" font-family="sans-serif">Shell: AZ91D Mg + PEO · Mount: short-throw diaphragm</text>
+  <text x="20" y="283.6" font-size="8" fill="#444" font-family="sans-serif">Depth 6 m · 146 g · Cap. gap</text>
+  <rect x="546.8000000000001" y="257.6" width="130" height="30" fill="none" stroke="#1a1a1a" stroke-width="0.8" />
+  <text x="556.8000000000001" y="271.6" font-size="8" fill="#1a1a1a" font-family="sans-serif">NEREID PROGRAM</text>
+  <text x="556.8000000000001" y="283.6" font-size="8" fill="#1a1a1a" font-family="sans-serif">DWG B9-00 · REV A</text>
+</svg>

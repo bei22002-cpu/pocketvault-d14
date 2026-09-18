@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nereid · Product Shots</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Sora:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #071116;
+      --panel: #0e1c24;
+      --ink: #e7f0f2;
+      --muted: #8aa0a8;
+      --line: rgba(231,240,242,0.12);
+      --accent: #2ec4a8;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: Sora, system-ui, sans-serif;
+      background: radial-gradient(900px 500px at 10% -10%, rgba(46,196,168,0.14), transparent), var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    header {
+      padding: 28px 32px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    header h1 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 2rem;
+      letter-spacing: -0.02em;
+    }
+    header p { color: var(--muted); margin-top: 8px; max-width: 62ch; }
+    .links { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .links a {
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+    .links a:hover { border-color: var(--accent); color: var(--accent); }
+    main { padding: 24px 28px 48px; }
+    .family { margin-bottom: 36px; }
+    .family h2 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+      color: var(--accent);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      text-align: left;
+      color: inherit;
+      font: inherit;
+      padding: 0;
+      width: 100%;
+    }
+    .card:hover { border-color: var(--accent); }
+    .card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: #050a0d;
+    }
+    .card .cap { padding: 12px 14px; }
+    .card .cap strong { display: block; font-size: 0.95rem; }
+    .card .cap span { color: var(--muted); font-size: 0.8rem; }
+    dialog {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #050a0d;
+      color: var(--ink);
+      padding: 0;
+      max-width: min(920px, 94vw);
+    }
+    dialog::backdrop { background: rgba(0,0,0,0.72); }
+    dialog img { width: 100%; display: block; border-radius: 14px 14px 0 0; }
+    dialog .bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+    }
+    dialog a, dialog button {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      padding: 8px 12px;
+      border-radius: 999px;
+      text-decoration: none;
+      font: inherit;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Nereid · Product shots</h1>
+    <p>All 18 interfaces as finished product concepts — studio renders for pitch, packaging, and catalog use.</p>
+    <div class="links">
+      <a href="rolltop.html">★ Roll-Up MVP</a>
+      <a href="present.html">Presentation</a>
+      <a href="demos.html">Working demos</a>
+      <a href="index.html">Full catalog</a>
+    </div>
+  </header>
+  <main id="main"></main>
+  <dialog id="lightbox">
+    <img id="lb-img" alt="" />
+    <div class="bar">
+      <div id="lb-cap"></div>
+      <div style="display:flex;gap:8px">
+        <a id="lb-dl" download>Download</a>
+        <button id="lb-close">Close</button>
+      </div>
+    </div>
+  </dialog>
+  <script>
+    const products = [
+      { id: "A1", name: "Lightline Mg", family: "A · Force-Sensed Rigid", file: "products/product-A1-lightline-mg.png", meta: "153 g · 6 m · load cell" },
+      { id: "A2", name: "Carbonshell", family: "A · Force-Sensed Rigid", file: "products/product-A2-carbonshell.png", meta: "147 g · 6 m · CFRP" },
+      { id: "A3", name: "Skeleton", family: "A · Force-Sensed Rigid", file: "products/product-A3-skeleton.png", meta: "168 g · 10 m · field cartridge" },
+      { id: "A4", name: "Titan-20", family: "A · Force-Sensed Rigid", file: "products/product-A4-titan-20.png", meta: "205 g · 20 m · spinel" },
+      { id: "B5", name: "Hall-Glove", family: "B · Alternative Sensing", file: "products/product-B5-hall-glove.png", meta: "150 g · magnetic glove" },
+      { id: "B6", name: "Stylus-EMR", family: "B · Alternative Sensing", file: "products/product-B6-stylus-emr.png", meta: "156 g · tethered stylus" },
+      { id: "B7", name: "Lamb-Wave", family: "B · Alternative Sensing", file: "products/product-B7-lamb-wave.png", meta: "148 g · acoustic glass" },
+      { id: "B8", name: "Resistive-Hard", family: "B · Alternative Sensing", file: "products/product-B8-resistive-hard.png", meta: "144 g · ship-first" },
+      { id: "B9", name: "Gap-Cap", family: "B · Alternative Sensing", file: "products/product-B9-gap-cap.png", meta: "146 g · long standby" },
+      { id: "C10", name: "Crownpad", family: "C · Control Surfaces", file: "products/product-C10-crownpad.png", meta: "112 g · keys only" },
+      { id: "C11", name: "Tether-Puck", family: "C · Control Surfaces", file: "products/product-C11-tether-puck.png", meta: "140 g · wired puck" },
+      { id: "C12", name: "Tilt-Cursor", family: "C · Control Surfaces", file: "products/product-C12-tilt-cursor.png", meta: "96 g · lightest" },
+      { id: "C13", name: "Voice-PTT", family: "C · Control Surfaces", file: "products/product-C13-voice-ptt.png", meta: "104 g · bone conduction" },
+      { id: "D14", name: "Rolltop", family: "D · Non-Rigid & Mission", file: "products/product-D14-rolltop.png", meta: "122 g · packs flat" },
+      { id: "D15", name: "Oilfill-100", family: "D · Non-Rigid & Mission", file: "products/product-D15-oilfill-100.png", meta: "178 g · 100 m" },
+      { id: "D16", name: "Floatline", family: "D · Non-Rigid & Mission", file: "products/product-D16-floatline.png", meta: "168 g · floats" },
+      { id: "D17", name: "Chestboard", family: "D · Non-Rigid & Mission", file: "products/product-D17-chestboard.png", meta: "184 g · MOLLE" },
+      { id: "D18", name: "Gauntlet", family: "D · Non-Rigid & Mission", file: "products/product-D18-gauntlet.png", meta: "108 g · wrist + compass" },
+    ];
+
+    const families = [...new Set(products.map((p) => p.family))];
+    const main = document.getElementById("main");
+    const dlg = document.getElementById("lightbox");
+
+    main.innerHTML = families.map((f) => {
+      const cards = products.filter((p) => p.family === f).map((p) => `
+        <button class="card" data-file="${p.file}" data-title="${p.id} · ${p.name}" data-meta="${p.meta}">
+          <img src="${p.file}" alt="${p.id} ${p.name}" loading="lazy" />
+          <div class="cap"><strong>${p.id} · ${p.name}</strong><span>${p.meta}</span></div>
+        </button>
+      `).join("");
+      return `<section class="family"><h2>${f}</h2><div class="grid">${cards}</div></section>`;
+    }).join("");
+
+    main.querySelectorAll(".card").forEach((card) => {
+      card.addEventListener("click", () => {
+        document.getElementById("lb-img").src = card.dataset.file;
+        document.getElementById("lb-cap").innerHTML = `<strong>${card.dataset.title}</strong><div style="color:#8aa0a8;font-size:0.85rem">${card.dataset.meta}</div>`;
+        const a = document.getElementById("lb-dl");
+        a.href = card.dataset.file;
+        a.download = card.dataset.file.split("/").pop();
+        dlg.showModal();
+      });
+    });
+    document.getElementById("lb-close").onclick = () => dlg.close();
+    dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+  </script>
+</body>
+</html>

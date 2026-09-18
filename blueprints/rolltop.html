@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PocketVault · Roll-Up Bag — Locked MVP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0f1a1c;
+      --paper: #e8eef0;
+      --muted: #5a6e72;
+      --accent: #1a6b5c;
+      --accent-soft: #c5e4dc;
+      --line: rgba(15, 26, 28, 0.12);
+      --deep: #0a1416;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(26, 107, 92, 0.18), transparent),
+        linear-gradient(180deg, #d5e0e3 0%, var(--paper) 40%, #cfd9dc 100%);
+      line-height: 1.5;
+    }
+    a { color: inherit; }
+
+    /* —— Hero: one composition —— */
+    .hero {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 28px;
+      position: relative;
+      z-index: 2;
+    }
+    .top nav { display: flex; gap: 14px; flex-wrap: wrap; }
+    .top a {
+      font-size: 0.82rem;
+      text-decoration: none;
+      color: var(--muted);
+      border-bottom: 1px solid transparent;
+    }
+    .top a:hover { color: var(--ink); border-color: var(--accent); }
+    .lock {
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-stage {
+      position: relative;
+      display: grid;
+      align-items: end;
+      padding: 0 28px 48px;
+      min-height: 0;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        url("rolltop/renders/hero-render.png") center 35% / cover no-repeat;
+      transform: scale(1.02);
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(232,238,240,0.55) 0%, rgba(232,238,240,0.15) 35%, rgba(10,20,22,0.72) 100%);
+    }
+    @keyframes drift {
+      from { transform: scale(1.02) translateY(0); }
+      to { transform: scale(1.06) translateY(-1.5%); }
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 38rem;
+      color: #f2f7f8;
+      animation: rise 0.9s ease-out both;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .brand {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(2.8rem, 7vw, 4.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .brand em { font-style: italic; color: var(--accent-soft); }
+    .lede {
+      font-size: 1.05rem;
+      max-width: 32ch;
+      color: rgba(242, 247, 248, 0.88);
+      margin-bottom: 22px;
+    }
+    .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 18px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--accent-soft); color: var(--deep); }
+    .btn-ghost { border-color: rgba(242,247,248,0.35); color: #f2f7f8; }
+
+    /* —— Sections —— */
+    section {
+      padding: 72px 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    section h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    section .sub {
+      color: var(--muted);
+      max-width: 52ch;
+      margin-bottom: 36px;
+    }
+    .decision {
+      background: var(--deep);
+      color: #e8f0f2;
+      max-width: none;
+      padding: 56px 28px;
+    }
+    .decision-inner { max-width: 900px; margin: 0 auto; }
+    .decision h2 { color: #f2f7f8; }
+    .decision .sub { color: rgba(232,240,242,0.65); }
+    .decision dl {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px 28px;
+    }
+    .decision dt {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-soft);
+      margin-bottom: 6px;
+    }
+    .decision dd { font-size: 0.98rem; color: rgba(232,240,242,0.9); }
+
+    .seq img {
+      width: 100%;
+      display: block;
+      border-radius: 2px;
+      animation: fadein 1.1s ease both;
+    }
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 800px) {
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+    .grid-3 figure {
+      margin: 0;
+      overflow: hidden;
+    }
+    .grid-3 img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: #0a1416;
+      transition: transform 0.5s ease;
+    }
+    .grid-3 figure:hover img { transform: scale(1.03); }
+    .grid-3 figcaption {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 32px;
+    }
+    @media (max-width: 640px) { .specs { grid-template-columns: 1fr; } }
+    .specs div {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.92rem;
+    }
+    .specs span { color: var(--muted); }
+
+    .note {
+      margin-top: 28px;
+      padding: 16px 18px;
+      border-left: 3px solid var(--accent);
+      background: rgba(26, 107, 92, 0.08);
+      font-size: 0.92rem;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    footer {
+      padding: 28px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="top">
+      <div class="lock">MVP locked · Sep 18, 2026</div>
+      <nav>
+        <a href="present.html">Presentation</a>
+        <a href="films.html">Films</a>
+        <a href="index.html">Catalog</a>
+        <a href="#decision">Decision</a>
+      </nav>
+    </div>
+    <div class="hero-stage">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <h1 class="brand">PocketVault<br /><em>Roll-Up</em></h1>
+        <p class="lede">Everyday wallet. When water shows up, unroll the bag, seal phone and keys, keep going.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#how">See how it works</a>
+          <a class="btn btn-ghost" href="videos/products/D14-rolltop.mp4">Watch film</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="decision" id="decision">
+    <div class="decision-inner">
+      <h2>We're shipping the roll-up bag</h2>
+      <p class="sub">
+        From the Nereid catalog and the wallet sketch, IBC locks on one SKU:
+        a slim card wallet with a permanently attached roll-top dry bag.
+      </p>
+      <dl>
+        <div>
+          <dt>Why this</dt>
+          <dd>It's already on you — solves “I forget my dry bag,” the survey’s real availability problem.</dd>
+        </div>
+        <div>
+          <dt>Price band</dt>
+          <dd>$19.99 list · $14.99 early-bird (survey sweet spot).</dd>
+        </div>
+        <div>
+          <dt>P0 features</dt>
+          <dd>IPX7 dunk seal · packs to ~15 mm · holds 6.9″ phone + keys + cash.</dd>
+        </div>
+        <div>
+          <dt>Not in v1</dt>
+          <dd>Clear touchscreen window (survey want) → v1.1 if demos demand it.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="how">
+    <h2>Four moves</h2>
+    <p class="sub">Stowed in a pocket. Deployed in seconds. No separate pouch to remember.</p>
+    <div class="seq">
+      <img src="rolltop/renders/deployment-sequence.png" alt="Four-step deployment: stowed, unrolled, loaded, sealed" />
+    </div>
+  </section>
+
+  <section>
+    <h2>CAD states</h2>
+    <p class="sub">Parametric model from Northstar/Wallet — stowed, deployed, sealed.</p>
+    <div class="grid-3">
+      <figure>
+        <img src="rolltop/renders/northstar_wallet_stowed_iso.png" alt="Stowed CAD iso" />
+        <figcaption>Stowed — 100 × 82 × 15.2 mm</figcaption>
+      </figure>
+      <figure>
+        <img src="rolltop/renders/northstar_wallet_deployed_iso.png" alt="Deployed CAD iso" />
+        <figcaption>Deployed — 280 mm panel open</figcaption>
+      </figure>
+      <figure>
+        <img src="rolltop/renders/northstar_wallet_sealed_iso.png" alt="Sealed CAD iso" />
+        <figcaption>Sealed — 0.58 L, four roll-downs</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Spec snapshot</h2>
+    <p class="sub">Numbers from the CAD build — see design-spec for full BOM and dunk test plan.</p>
+    <div class="specs">
+      <div><span>Wallet</span><strong>100 × 70 mm · ≤ 8 mm loaded</strong></div>
+      <div><span>Stowed envelope</span><strong>100 × 82 × 15.2 mm</strong></div>
+      <div><span>Sealed volume</span><strong>0.58 L · 176 mm depth</strong></div>
+      <div><span>Target mass</span><strong>≤ 85 g</strong></div>
+      <div><span>Bag body</span><strong>70D nylon · dual-face TPU</strong></div>
+      <div><span>Seal</span><strong>4 rolls + strap buckle</strong></div>
+    </div>
+    <p class="note">
+      Catalog D14 (soft rolltop + clear sensing window) stays as the stretch path if
+      dunk demos prove people need to use the phone while sealed. v1 ships without the window.
+    </p>
+  </section>
+
+  <footer>
+    <span>PocketVault · IBC Fall 2026</span>
+    <a href="rolltop/design-spec.md">Full design spec</a>
+    <a href="rolltop/renders/construction-diagram.png">Construction diagram</a>
+    <a href="rolltop/reference/original-sketch.png">Original sketch</a>
+    <a href="present.html">Nereid presentation</a>
+  </footer>
+</body>
+</html>

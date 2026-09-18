@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PocketVault · D14 Rolltop · Product Proposal</title>
+  <meta name="description" content="PocketVault D14 Rolltop — product proposal deck, one-page pre-read, business model canvas, and engineering blueprints." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #e7f0f2;
+      --muted: #8aa0a8;
+      --dim: #5c727a;
+      --line: rgba(231, 240, 242, 0.12);
+      --accent: #2ec4a8;
+      --panel: rgba(14, 28, 36, 0.78);
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(1100px 640px at 12% -8%, rgba(46, 196, 168, 0.16), transparent 55%),
+        radial-gradient(800px 520px at 100% 10%, rgba(126, 200, 227, 0.08), transparent 48%),
+        linear-gradient(165deg, #071116, #0c1a22 42%, #08141b);
+      color: var(--ink);
+      font-family: Sora, system-ui, sans-serif;
+      padding: clamp(28px, 6vw, 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrap { width: min(1080px, 100%); }
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      max-width: 18ch;
+    }
+    .lede {
+      color: var(--muted);
+      font-size: clamp(0.98rem, 1.4vw, 1.12rem);
+      line-height: 1.55;
+      max-width: 56ch;
+      margin-top: 18px;
+    }
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 28px; }
+    @media (max-width: 680px) { .stats { grid-template-columns: 1fr 1fr; } }
+    .stat { border: 1px solid var(--line); background: var(--panel); border-radius: 10px; padding: 14px; }
+    .stat b {
+      display: block;
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      margin-bottom: 3px;
+    }
+    .stat span { color: var(--muted); font-size: 0.74rem; }
+    .stat.hot b { color: var(--accent); }
+
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin-top: 30px; }
+    a.card {
+      display: block;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 18px 18px 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+    }
+    a.card:hover { border-color: rgba(46, 196, 168, 0.55); transform: translateY(-2px); background: rgba(46, 196, 168, 0.07); }
+    a.card.primary { border-color: rgba(46, 196, 168, 0.45); background: rgba(46, 196, 168, 0.1); }
+    a.card h2 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+    a.card p { color: var(--muted); font-size: 0.84rem; line-height: 1.45; }
+    a.card .go { color: var(--accent); font-size: 0.74rem; margin-top: 10px; display: block; font-weight: 600; }
+
+    footer { margin-top: 34px; color: var(--dim); font-size: 0.75rem; line-height: 1.5; max-width: 72ch; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="eyebrow">PocketVault · BYU-Idaho IBC · Oct 12 – Dec 16 window</div>
+    <h1>D14 Rolltop — product proposal.</h1>
+    <p class="lede">
+      A waterproof phone pouch you can actually use through the window, sold wholesale to retail stores.
+      Product decision, customer evidence, unit economics, and the full business model canvas.
+    </p>
+
+    <div class="stats">
+      <div class="stat hot"><b>n = 47</b><span>Buyers surveyed</span></div>
+      <div class="stat"><b>$19.99</b><span>Survey-set MSRP</span></div>
+      <div class="stat"><b>~$10</b><span>Wholesale to stores</span></div>
+      <div class="stat"><b>8–15</b><span>Target doors</span></div>
+    </div>
+
+    <div class="cards">
+      <a class="card primary" href="blueprints/d14-product-pitch.html">
+        <h2>Product proposal deck</h2>
+        <p>11 core slides, 3 appendix pages, and the business model canvas. Arrow keys to navigate, <strong>N</strong> for presenter notes.</p>
+        <span class="go">Present it →</span>
+      </a>
+      <a class="card" href="blueprints/d14-product-pitch-brief.html">
+        <h2>One-page pre-read</h2>
+        <p>The decision request, trade-offs, unit economics, and what changes at yes versus no. Print-ready leave-behind.</p>
+        <span class="go">Read the brief →</span>
+      </a>
+      <a class="card" href="blueprints/d14-product-pitch.html#15">
+        <h2>Business model canvas</h2>
+        <p>The Osterwalder nine-block model behind the product: partners, activities, channels, cost, and revenue.</p>
+        <span class="go">Open the canvas →</span>
+      </a>
+      <a class="card" href="blueprints/index.html">
+        <h2>Blueprint gallery</h2>
+        <p>Engineering drawings, orthographics, bills of material, CAD downloads, product shots, and demo films.</p>
+        <span class="go">Browse blueprints →</span>
+      </a>
+      <a class="card" href="blueprints/d14-approval.html">
+        <h2>Manufacturing vote</h2>
+        <p>The separate P1 approval deck covering tooling, NRE, and the build plan for D14-RT-001.</p>
+        <span class="go">Open the vote deck →</span>
+      </a>
+      <a class="card" href="blueprints/products.html">
+        <h2>Product shots &amp; demos</h2>
+        <p>Renders and working demo films across the full concept line, including the D14 rolltop.</p>
+        <span class="go">See the products →</span>
+      </a>
+    </div>
+
+    <footer>
+      Concept renders and engineering drawings. Unit economics are modeled planning bands (±30–50%) and remain
+      illustrative until factory quotes lock COGS. No IP-rating claim is made until certification testing is complete.
+    </footer>
+  </div>
+</body>
+</html>

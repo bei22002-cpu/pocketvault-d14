@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D15 Oilfill-100 · Manufacturing Approval</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #e7f0f2;
+      --muted: #8aa0a8;
+      --dim: #5c727a;
+      --line: rgba(231, 240, 242, 0.12);
+      --accent: #2ec4a8;
+      --accent-2: #7ec8e3;
+      --warn: #e2b36a;
+      --danger: #e07a6a;
+      --bg0: #071116;
+      --bg1: #0c1a22;
+      --panel: rgba(14, 28, 36, 0.78);
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html, body {
+      height: 100%;
+      background: var(--bg0);
+      color: var(--ink);
+      font-family: Sora, system-ui, sans-serif;
+      overflow: hidden;
+    }
+    .deck {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(1100px 640px at 12% -8%, rgba(46, 196, 168, 0.18), transparent 55%),
+        radial-gradient(800px 520px at 100% 10%, rgba(126, 200, 227, 0.09), transparent 48%),
+        linear-gradient(165deg, var(--bg0), var(--bg1) 42%, #08141b);
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: clamp(28px, 4.5vw, 56px) clamp(28px, 5.5vw, 72px) 78px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .brand {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(2.4rem, 6.2vw, 4.8rem);
+      line-height: 0.96;
+      letter-spacing: -0.03em;
+      max-width: 14ch;
+    }
+    h2 {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 650;
+      font-size: clamp(1.75rem, 3.8vw, 2.9rem);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      max-width: 20ch;
+      margin-bottom: 14px;
+    }
+    .lede {
+      font-size: clamp(0.98rem, 1.4vw, 1.18rem);
+      color: var(--muted);
+      max-width: 48ch;
+      line-height: 1.55;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(18px, 3.5vw, 44px);
+      align-items: center;
+      width: 100%;
+    }
+    .split-33 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      .split, .split-33 { grid-template-columns: 1fr; }
+      .slide { justify-content: flex-start; padding-top: 40px; overflow-y: auto; }
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 28px;
+      width: min(960px, 100%);
+    }
+    @media (max-width: 720px) { .stats { grid-template-columns: 1fr 1fr; } }
+    .stat {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 16px 14px;
+      border-radius: 10px;
+    }
+    .stat b {
+      display: block;
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .stat span { color: var(--muted); font-size: 0.78rem; }
+    .panel {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 18px 18px 16px;
+      height: 100%;
+    }
+    .panel h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .panel p, .panel li { color: var(--muted); font-size: 0.88rem; line-height: 1.45; }
+    .panel ul { padding-left: 1.1em; margin-top: 6px; }
+    .panel li { margin: 4px 0; }
+    .panel strong { color: var(--ink); font-weight: 600; }
+    .ask {
+      border: 1px solid rgba(46, 196, 168, 0.45);
+      background: rgba(46, 196, 168, 0.1);
+      border-radius: 12px;
+      padding: 18px 20px;
+      max-width: 54ch;
+      margin-top: 22px;
+    }
+    .ask .label {
+      color: var(--accent);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .ask p { color: var(--ink); font-size: 1.02rem; line-height: 1.45; }
+    .bullets { list-style: none; margin-top: 10px; max-width: 48ch; }
+    .bullets li {
+      position: relative;
+      padding: 9px 0 9px 22px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    .bullets li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 16px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .bullets strong { color: var(--ink); }
+    .media {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #000;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      display: block;
+    }
+    .caption {
+      margin-top: 8px;
+      color: var(--dim);
+      font-size: 0.75rem;
+    }
+    .table-wrap {
+      width: 100%;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+    th, td {
+      text-align: left;
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      color: var(--dim);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+    tr:last-child td { border-bottom: 0; }
+    td strong { color: var(--accent); font-weight: 600; }
+    .path {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      width: 100%;
+      margin-top: 8px;
+    }
+    @media (max-width: 900px) { .path { grid-template-columns: 1fr 1fr; } }
+    .step {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 14px;
+      min-height: 140px;
+    }
+    .step .n {
+      color: var(--accent);
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 650;
+      margin-bottom: 6px;
+    }
+    .step h3 { font-size: 0.9rem; margin-bottom: 6px; }
+    .step p { color: var(--muted); font-size: 0.78rem; line-height: 1.4; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .pill em { color: var(--accent); font-style: normal; font-weight: 600; }
+    .big-number {
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(3.5rem, 10vw, 6.5rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+      color: var(--accent);
+    }
+    .vote {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 16px;
+      width: min(920px, 100%);
+      margin-top: 20px;
+    }
+    @media (max-width: 800px) { .vote { grid-template-columns: 1fr; } }
+    .vote .yes {
+      border: 1px solid rgba(46, 196, 168, 0.5);
+      background: rgba(46, 196, 168, 0.12);
+      border-radius: 14px;
+      padding: 22px;
+    }
+    .vote .hold {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 14px;
+      padding: 22px;
+    }
+    .vote h3 { font-family: Fraunces, Georgia, serif; font-size: 1.5rem; margin-bottom: 10px; }
+    .footer-bar {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      border-top: 1px solid var(--line);
+      background: rgba(7, 17, 22, 0.92);
+      font-size: 0.72rem;
+      color: var(--dim);
+      z-index: 5;
+    }
+    .progress {
+      position: absolute;
+      left: 0; top: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.35s ease;
+    }
+    .nav-hint { display: flex; align-items: center; gap: 8px; }
+    kbd {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: inherit;
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+    .formula {
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+      letter-spacing: -0.02em;
+      margin: 18px 0 8px;
+      color: var(--ink);
+    }
+    .formula span { color: var(--accent); }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      width: 100%;
+      margin-top: 8px;
+    }
+    @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+    .danger { color: var(--warn); }
+    a.inline {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(46,196,168,0.35);
+    }
+  </style>
+</head>
+<body>
+  <div class="deck" id="deck">
+
+    <!-- 1 -->
+    <section class="slide active" data-title="Title">
+      <div class="eyebrow">Decision meeting · Manufacturing authorization</div>
+      <div class="brand">Approve D15 Oilfill-100 manufacturing.</div>
+      <p class="lede" style="margin-top:20px">
+        The only design in the Nereid catalog that reaches <strong style="color:var(--ink)">true 100 m depth</strong>
+        without thickening the walls into a brick — by making pressure disappear.
+      </p>
+      <div class="ask">
+        <div class="label">Today’s ask</div>
+        <p>Authorize Phase P0→P1: CNC bridge housings, oil-fill station, and hydrostatic proof campaign — so we can prove the physics before committing mold steel.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>100 m</b><span>Design depth</span></div>
+        <div class="stat"><b>15 bar</b><span>Proof gate (1.5×)</span></div>
+        <div class="stat"><b>178 g</b><span>Mass target</span></div>
+        <div class="stat"><b>P1</b><span>What we need approved</span></div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide" data-title="Stakes">
+      <div class="eyebrow">Why this meeting matters</div>
+      <h2>Depth is the credibility product.</h2>
+      <div class="split">
+        <ul class="bullets">
+          <li><strong>Every recreational case tops out ~6–20 m</strong> by fighting pressure with thicker walls and heavier glass.</li>
+          <li><strong>D15 is the category jump:</strong> oil compensation → ΔP ≈ 0 → 1 mm walls at 100 m.</li>
+          <li><strong>Without a manufacturing path,</strong> D15 is a slide in a catalog. With it, we have a moat.</li>
+          <li class="danger"><strong>If we do not de-risk P1 now,</strong> we cannot honestly claim a depth product — and the program stalls at snorkel-class hardware.</li>
+        </ul>
+        <div>
+          <img class="media" src="products/product-D15-oilfill-100.png" alt="D15 product" />
+          <div class="caption">Product concept · Oilfill-100 · sealed OLED readout · physical keys</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="slide" data-title="Insight">
+      <div class="eyebrow">The engineering bet</div>
+      <h2>Don’t fight pressure. Equalize it.</h2>
+      <p class="formula">Ambient water pressure → <span>rolling diaphragm</span> → silicone oil → ΔP across shell ≈ <span>0</span></p>
+      <div class="two-col">
+        <div class="panel">
+          <h3>Old way (A4 Titan path)</h3>
+          <ul>
+            <li>Thicker metal + thicker optic</li>
+            <li>Mass climbs fast past 20 m</li>
+            <li>Cost and tooling explode</li>
+            <li>Still a dry-air pressure vessel</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>D15 way (oilfill)</h3>
+          <ul>
+            <li><strong>1 mm PPA shell</strong> — not a pressure vessel</li>
+            <li>Oil transmits ambient pressure</li>
+            <li>Diaphragm takes the stroke</li>
+            <li>Depth rating becomes a <strong>seal + diaphragm + fill process</strong> problem — which manufacturing can own</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pill-row">
+        <div class="pill">Phone immersed · <em>screen sacrificed</em></div>
+        <div class="pill">UI = <em>sealed OLED + keys</em></div>
+        <div class="pill">Honest trade · <em>depth over touchscreen</em></div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="slide" data-title="Product">
+      <div class="eyebrow">What we would build</div>
+      <h2>D15 Oilfill-100 — locked spec</h2>
+      <div class="split">
+        <div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Parameter</th><th>Spec</th></tr></thead>
+              <tbody>
+                <tr><td>Envelope</td><td><strong>170 × 90 × 35 mm</strong></td></tr>
+                <tr><td>Wall</td><td><strong>1.0 mm PPA</strong> (compensated)</td></tr>
+                <tr><td>OLED aperture</td><td>50 × 30 mm dry bay</td></tr>
+                <tr><td>Diaphragm port</td><td>Ø24 mm rolling VMQ</td></tr>
+                <tr><td>Oil fill</td><td>~350–400 mL dielectric silicone</td></tr>
+                <tr><td>Reservoir</td><td>≥40 mL (−32…+71 °C)</td></tr>
+                <tr><td>Mass budget</td><td>178 g (line-item owned)</td></tr>
+                <tr><td>Controls</td><td>C10-style encoder + hat keys</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <img class="media" src="assets/D15-oilfill-100-blueprint.png" alt="D15 blueprint" />
+          <div class="caption">Blueprint · CAD STEP/STL already exported · models/D15/</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="slide" data-title="Evidence">
+      <div class="eyebrow">We are not starting from a napkin</div>
+      <h2>The package already exists.</h2>
+      <div class="split-33">
+        <div class="panel">
+          <h3>Geometry</h3>
+          <p><strong>oil_shell.step</strong> + <strong>oil_lid.step</strong></p>
+          <p style="margin-top:8px">45.7 cm³ shell · 15.3 cm³ lid · parametric rebuild via build_all.py</p>
+        </div>
+        <div class="panel">
+          <h3>BOM &amp; mass</h3>
+          <p>14-line production BOM with process + mass owners</p>
+          <p style="margin-top:8px">28+52+34+16+16+32 g = <strong>178 g</strong></p>
+        </div>
+        <div class="panel">
+          <h3>Training media</h3>
+          <p>HQ explode / work stills + cinematic product film</p>
+          <p style="margin-top:8px"><a class="inline" href="videos/products/D15-oilfill-100.mp4">D15-oilfill-100.mp4</a></p>
+        </div>
+      </div>
+      <div class="split" style="margin-top:16px">
+        <div>
+          <img class="media" src="hq/hq-D15-explode.png" alt="Exploded" />
+          <div class="caption">Exploded manufacturing still</div>
+        </div>
+        <div>
+          <img class="media" src="hq/hq-D15-work.png" alt="In use" />
+          <div class="caption">Working depth scenario</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="slide" data-title="Math">
+      <div class="eyebrow">Freeze-before-tooling math</div>
+      <h2>The reservoir is non-negotiable.</h2>
+      <p class="lede">If we under-size expansion volume, the case bulges or spits seals in heat. This is the number that kills programs that “just fill it with oil.”</p>
+      <div class="two-col" style="margin-top:22px">
+        <div class="panel">
+          <h3>Thermal expansion</h3>
+          <p style="margin-top:10px"><strong>V_oil</strong> ≈ 400 mL</p>
+          <p><strong>CTE</strong> ≈ 0.00095 / °C (silicone oil)</p>
+          <p><strong>ΔT</strong> = 71 − (−32) = <strong>103 °C</strong></p>
+          <p class="formula" style="font-size:1.35rem;margin-top:14px">ΔV ≈ 400 × 0.00095 × 103 ≈ <span>39 mL</span></p>
+          <p style="margin-top:8px"><strong>Spec floor: ≥40 mL free + 25% margin → ~50 mL design</strong></p>
+        </div>
+        <div class="panel">
+          <h3>Pressure proof</h3>
+          <p style="margin-top:10px">Design: <strong>100 m → 10 bar</strong></p>
+          <p>Proof (every unit): <strong>15 bar × 15 min</strong></p>
+          <p>Working hold: <strong>10 bar × 30 min + UI exercise</strong></p>
+          <p style="margin-top:14px">Pass = no weep, no diaphragm tear, no OLED fog, keys still actuate.</p>
+          <p style="margin-top:10px;color:var(--warn)">FDM shells are explicitly excluded from this gate.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="slide" data-title="Ladder">
+      <div class="eyebrow">De-risked authorization path</div>
+      <h2>We are not asking for mold steel today.</h2>
+      <div class="path">
+        <div class="step">
+          <div class="n">P0</div>
+          <h3>FDM fit</h3>
+          <p>Dry phone cradle, screw map. No water. Cheap.</p>
+        </div>
+        <div class="step" style="border-color:rgba(46,196,168,0.55)">
+          <div class="n">P1</div>
+          <h3>CNC + oil</h3>
+          <p><strong style="color:var(--ink)">ASK TODAY.</strong> PEI/PPA housings, fill station, 15 bar proof.</p>
+        </div>
+        <div class="step">
+          <div class="n">P2</div>
+          <h3>Pool pilots</h3>
+          <p>Full electronics. Supervised ≤5 m. UX truth.</p>
+        </div>
+        <div class="step">
+          <div class="n">P3</div>
+          <h3>Tooling samples</h3>
+          <p>Only if P1/P2 pass. Mold steel then.</p>
+        </div>
+        <div class="step">
+          <div class="n">P4</div>
+          <h3>Production</h3>
+          <p>SPC on oil mass + proof yield. Cert path.</p>
+        </div>
+      </div>
+      <div class="ask">
+        <div class="label">Why this structure wins the room</div>
+        <p>Capital follows evidence. Approve the experiment that can fail cheaply — not the mold that fails expensively.</p>
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section class="slide" data-title="Build">
+      <div class="eyebrow">Manufacturing system</div>
+      <h2>Nine phases. Owned. Exit-gated.</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Phase</th><th>Exit criteria</th></tr></thead>
+          <tbody>
+            <tr><td>0</td><td>Engineering freeze</td><td>STEP + oil calc + seal stack signed</td></tr>
+            <tr><td>1</td><td>Materials RFQ</td><td>2 qualified sources oil / diaphragm / polymer</td></tr>
+            <tr><td>2</td><td>Housing</td><td>FAIR glands ±0.05 mm; Ra ≤ 0.8 µm</td></tr>
+            <tr><td>3</td><td>Diaphragm / reservoir / valve</td><td>Stroke covers ≥50 mL; leak-free dry</td></tr>
+            <tr><td>4</td><td>Electronics dry bay</td><td>OLED bay vacuum-tight; BLE link</td></tr>
+            <tr><td>5</td><td>Dry assembly</td><td>1 bar soap / decay pass <strong>before oil</strong></td></tr>
+            <tr><td>6</td><td>Oil fill &amp; bleed</td><td>Mid-stroke diaphragm; mass ±5 g; no bubbles</td></tr>
+            <tr><td>7</td><td>Hydro proof</td><td>15 bar / 15 min then 10 bar functional</td></tr>
+            <tr><td>8</td><td>Release</td><td>Serial + fill log + maintenance kit</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 9 -->
+    <section class="slide" data-title="Money">
+      <div class="eyebrow">What approval funds</div>
+      <h2>P1 budget — evidence, not inventory.</h2>
+      <div class="split">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Line</th><th>Band</th></tr></thead>
+            <tbody>
+              <tr><td>CNC bridge housings (5–10 sets)</td><td><strong>$2.5k–$6k</strong></td></tr>
+              <tr><td>Diaphragms, valves, seals, oil</td><td><strong>$1k–$2.5k</strong></td></tr>
+              <tr><td>Fill/bleed station setup</td><td><strong>$1k–$3k</strong></td></tr>
+              <tr><td>Hydro pot access (rent or buy)</td><td><strong>$0.8k–$8k</strong></td></tr>
+              <tr><td>Electronics bring-up (OLED/MCU)</td><td><strong>$3k–$8k</strong></td></tr>
+              <tr><td>Labor / contingency (20%)</td><td><strong>$1.5k–$4k</strong></td></tr>
+              <tr><td><strong>P1 authorization total</strong></td><td><strong>$10k–$28k</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="big-number">~$18k</div>
+          <p class="lede" style="margin-top:12px">Planning midpoint to reach a pass/fail hydrostatic answer in ~6 weeks from freeze.</p>
+          <div class="panel" style="margin-top:16px">
+            <h3>What we are explicitly not funding yet</h3>
+            <ul>
+              <li>Steel production molds ($8k–$25k NRE)</li>
+              <li>100-unit inventory buy</li>
+              <li>Full dive certification filing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="slide" data-title="Schedule">
+      <div class="eyebrow">Six-week P1 clock</div>
+      <h2>From freeze to proof.</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Week</th><th>Focus</th><th>Visible output</th></tr></thead>
+          <tbody>
+            <tr><td><strong>0–1</strong></td><td>Freeze STEP, oil mass, seal stack; RFQ</td><td>Signed engineering packet</td></tr>
+            <tr><td><strong>2–3</strong></td><td>CNC housings + diaphragm/valve intake</td><td>FAIR report</td></tr>
+            <tr><td><strong>4</strong></td><td>Fill station + first dry leak + first fills</td><td>Process sheet v1</td></tr>
+            <tr><td><strong>5</strong></td><td>Hydro campaign 15 bar</td><td>Pass/fail data pack</td></tr>
+            <tr><td><strong>6</strong></td><td>Go / no-go for P2 electronics + pool</td><td>Decision memo</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pill-row">
+        <div class="pill">Kill criterion · <em>cannot hold 15 bar dry-or-oil</em></div>
+        <div class="pill">Success · <em>≥3 units pass proof with logged oil mass</em></div>
+      </div>
+    </section>
+
+    <!-- 11 -->
+    <section class="slide" data-title="Risks">
+      <div class="eyebrow">Preempt the objections</div>
+      <h2>We already named what can kill us.</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Risk</th><th>If true</th><th>Mitigation in P1</th></tr></thead>
+          <tbody>
+            <tr><td>Oil attacks phone seals</td><td>Bricked phones</td><td>30-day sacrificial soak + CoC oil only</td></tr>
+            <tr><td>Diaphragm fatigue / tear</td><td>Flood at depth</td><td>Stroke cycle bench + inspect after every proof</td></tr>
+            <tr><td>Users reject no phone screen</td><td>No demand</td><td>OLED UX demo before P3 tooling</td></tr>
+            <tr><td>Reservoir undersized</td><td>Seal spit in heat</td><td>Measure oil mass → re-freeze ≥50 mL</td></tr>
+            <tr><td>Knit lines on O-ring lands</td><td>Chronic leakers</td><td>CNC bridge first; mold-flow before steel</td></tr>
+            <tr><td>BLE dies in filled PPA</td><td>No UI link</td><td>RF window keep-out in dry bay</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 12 -->
+    <section class="slide" data-title="Safety">
+      <div class="eyebrow">Integrity</div>
+      <h2>We will not oversell certification.</h2>
+      <div class="two-col">
+        <div class="panel">
+          <h3>What we will claim after P1 pass</h3>
+          <ul>
+            <li>Bench hydrostatic survival at 15 bar</li>
+            <li>Documented fill/bleed process</li>
+            <li>Repeatable oil-mass control</li>
+            <li>“Prototype depth architecture validated”</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>What we will not claim yet</h3>
+          <ul>
+            <li>CE / PE / dive-equipment certification</li>
+            <li>Life-support or buddy-critical use</li>
+            <li>Consumer 100 m rating on a sell sheet</li>
+            <li>FDM parts as dive hardware</li>
+          </ul>
+        </div>
+      </div>
+      <p class="lede" style="margin-top:22px">That honesty is how you keep the room’s trust when the pressure pot is still ahead of us.</p>
+    </section>
+
+    <!-- 13 -->
+    <section class="slide" data-title="Ask">
+      <div class="eyebrow">Motion for the room</div>
+      <h2>Approve P1 manufacturing authorization.</h2>
+      <div class="vote">
+        <div class="yes">
+          <h3>Approve</h3>
+          <ul class="bullets" style="margin:0">
+            <li><strong>Budget:</strong> up to $28k (target ~$18k)</li>
+            <li><strong>Scope:</strong> CNC housings, fill station, hydro proofs, oil/diaphragm quals</li>
+            <li><strong>Duration:</strong> 6 weeks to go/no-go memo</li>
+            <li><strong>Success:</strong> ≥3 units pass 15 bar with logged process</li>
+            <li><strong>Next gate:</strong> separate vote for P2/P3</li>
+          </ul>
+        </div>
+        <div class="hold">
+          <h3>If you hold</h3>
+          <p style="color:var(--muted);font-size:0.92rem;line-height:1.45">
+            We remain a catalog of recreational-depth ideas.
+            D15 stays a render. The depth moat does not get built.
+          </p>
+          <p style="color:var(--muted);font-size:0.92rem;line-height:1.45;margin-top:12px">
+            Holding is rational only if the group rejects depth as a product thesis — not because the plan is incomplete.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 -->
+    <section class="slide" data-title="Close">
+      <div class="eyebrow">D15 Oilfill-100</div>
+      <div class="brand" style="max-width:16ch">Make pressure disappear — then prove it.</div>
+      <p class="lede" style="margin-top:20px">
+        Full manufacturing plan, BOM, work instructions, and test gates are ready for the packet.
+      </p>
+      <div class="pill-row">
+        <div class="pill">Deck · <em>this presentation</em></div>
+        <div class="pill">Plan · <em>manufacturing/D15-…Plan.md</em></div>
+        <div class="pill">Leave-behind · <em>d15-approval-brief.html</em></div>
+        <div class="pill">Notes · <em>SPEAKER_NOTES.md</em></div>
+      </div>
+      <div class="ask">
+        <div class="label">Decision</div>
+        <p>Do we authorize P1 — yes or no?</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="footer-bar">
+    <div class="progress" id="progress"></div>
+    <div>D15 Oilfill-100 · Manufacturing Approval · Confidential</div>
+    <div class="nav-hint">
+      <kbd>←</kbd> <kbd>→</kbd> · <kbd>F</kbd> fullscreen ·
+      <span id="counter">1 / 14</span>
+    </div>
+  </div>
+
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    let i = 0;
+    function show(n) {
+      i = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
+      document.getElementById("counter").textContent = `${i + 1} / ${slides.length}`;
+      document.getElementById("progress").style.width = `${((i + 1) / slides.length) * 100}%`;
+      history.replaceState(null, "", `#${i + 1}`);
+    }
+    function next() { show(i + 1); }
+    function prev() { show(i - 1); }
+    document.addEventListener("keydown", (e) => {
+      if (["ArrowRight", "ArrowDown", " ", "PageDown", "Enter"].includes(e.key)) { e.preventDefault(); next(); }
+      else if (["ArrowLeft", "ArrowUp", "PageUp", "Backspace"].includes(e.key)) { e.preventDefault(); prev(); }
+      else if (e.key === "Home") show(0);
+      else if (e.key === "End") show(slides.length - 1);
+      else if (e.key === "f" || e.key === "F") {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+        else document.exitFullscreen?.();
+      }
+    });
+    document.getElementById("deck").addEventListener("click", (e) => {
+      if (e.target.closest("a")) return;
+      if (e.clientX >= window.innerWidth / 2) next(); else prev();
+    });
+    const start = Math.max(0, parseInt(location.hash.replace("#", ""), 10) - 1 || 0);
+    show(start);
+  </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+{
+  "videos": [
+    {
+      "id": "A1",
+      "name": "Lightline Mg",
+      "file": "videos/products/A1-lightline-mg.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "A2",
+      "name": "Carbonshell",
+      "file": "videos/products/A2-carbonshell.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "A3",
+      "name": "Skeleton",
+      "file": "videos/products/A3-skeleton.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "A4",
+      "name": "Titan-20",
+      "file": "videos/products/A4-titan-20.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "B5",
+      "name": "Hall-Glove",
+      "file": "videos/products/B5-hall-glove.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "B6",
+      "name": "Stylus-EMR",
+      "file": "videos/products/B6-stylus-emr.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "B7",
+      "name": "Lamb-Wave",
+      "file": "videos/products/B7-lamb-wave.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "B8",
+      "name": "Resistive-Hard",
+      "file": "videos/products/B8-resistive-hard.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "B9",
+      "name": "Gap-Cap",
+      "file": "videos/products/B9-gap-cap.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "C10",
+      "name": "Crownpad",
+      "file": "videos/products/C10-crownpad.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "C11",
+      "name": "Tether-Puck",
+      "file": "videos/products/C11-tether-puck.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "C12",
+      "name": "Tilt-Cursor",
+      "file": "videos/products/C12-tilt-cursor.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "C13",
+      "name": "Voice-PTT",
+      "file": "videos/products/C13-voice-ptt.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "D14",
+      "name": "Rolltop",
+      "file": "videos/products/D14-rolltop.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "D15",
+      "name": "Oilfill-100",
+      "file": "videos/products/D15-oilfill-100.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "D16",
+      "name": "Floatline",
+      "file": "videos/products/D16-floatline.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "D17",
+      "name": "Chestboard",
+      "file": "videos/products/D17-chestboard.mp4",
+      "seconds": 16.5
+    },
+    {
+      "id": "D18",
+      "name": "Gauntlet",
+      "file": "videos/products/D18-gauntlet.mp4",
+      "seconds": 16.5
+    }
+  ],
+  "quality": "hq-cinematic"
+}

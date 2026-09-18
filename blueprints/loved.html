@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nereid · Products &amp; Customer Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Sora:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #071116; --panel: #0e1c24; --ink: #e7f0f2; --muted: #8aa0a8;
+      --line: rgba(231,240,242,0.12); --accent: #2ec4a8;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: Sora, system-ui, sans-serif;
+      background: radial-gradient(900px 500px at 10% -10%, rgba(46,196,168,0.14), transparent), var(--bg);
+      color: var(--ink); min-height: 100vh;
+    }
+    header { padding: 28px 32px 16px; border-bottom: 1px solid var(--line); }
+    header h1 { font-family: Fraunces, Georgia, serif; font-size: 2rem; letter-spacing: -0.02em; }
+    header p { color: var(--muted); margin-top: 8px; max-width: 64ch; }
+    .links { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .links a {
+      color: var(--ink); text-decoration: none; border: 1px solid var(--line);
+      padding: 8px 12px; border-radius: 999px; font-size: 0.85rem;
+    }
+    .links a.primary { background: var(--accent); color: #042019; border-color: var(--accent); font-weight: 600; }
+    .hero-video {
+      padding: 24px 28px 8px;
+    }
+    .hero-video video {
+      width: 100%; max-height: 62vh; background: #000;
+      border-radius: 14px; border: 1px solid var(--line);
+    }
+    .hero-video .cap { margin-top: 10px; color: var(--muted); font-size: 0.9rem; }
+    main { padding: 16px 28px 48px; }
+    .row {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 12px;
+      margin-bottom: 22px; align-items: stretch;
+    }
+    @media (max-width: 900px) { .row { grid-template-columns: 1fr; } }
+    .shot, .life {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+    }
+    .shot img, .life img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
+    .life img { aspect-ratio: 16 / 10; }
+    .meta { padding: 12px 14px; }
+    .meta strong { display: block; }
+    .meta span { color: var(--muted); font-size: 0.82rem; }
+    .meta .love { color: var(--accent); margin-top: 6px; font-size: 0.88rem; }
+    h2.fam {
+      font-family: Fraunces, Georgia, serif; color: var(--accent);
+      font-size: 1.15rem; margin: 28px 0 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Nereid · Loved in the wild</h1>
+    <p>Studio product shots + realistic in-use moments for all 18 designs — and the full marketing film showing how each works and why customers keep them.</p>
+    <div class="links">
+      <a class="primary" href="#film">Watch the film</a>
+      <a href="rolltop.html">★ Roll-Up MVP</a>
+      <a href="present.html">Presentation</a>
+      <a href="demos.html">Tech demos</a>
+      <a href="index.html">Catalog</a>
+    </div>
+  </header>
+
+  <section class="hero-video" id="film">
+    <video controls autoplay playsinline src="videos/nereid-products-loved.mp4"></video>
+    <div class="cap">Full reel — product → how it works → customer love · ~2 minutes · all 18 designs</div>
+  </section>
+
+  <main id="main"></main>
+  <script>
+    const items = [
+      { id:"A1", name:"Lightline Mg", fam:"A", prod:"products/product-A1-lightline-mg.png", life:"lifestyle/life-A1-lightline-mg.png", how:"Full-screen force touch through water", love:"Customers love the full-screen feel" },
+      { id:"A2", name:"Carbonshell", fam:"A", prod:"products/product-A2-carbonshell.png", life:"lifestyle/life-A2-carbonshell.png", how:"CFRP stiffness per gram", love:"Built for people who hate flex" },
+      { id:"A3", name:"Skeleton", fam:"A", prod:"products/product-A3-skeleton.png", life:"lifestyle/life-A3-skeleton.png", how:"Field-swap window cartridge", love:"Field repair that feels like magic" },
+      { id:"A4", name:"Titan-20", fam:"A", prod:"products/product-A4-titan-20.png", life:"lifestyle/life-A4-titan-20.png", how:"Titanium + spinel max abuse", love:"When the drop is non-negotiable" },
+      { id:"B5", name:"Hall-Glove", fam:"B", prod:"products/product-B5-hall-glove.png", life:"lifestyle/life-B5-hall-glove.png", how:"Magnet glove through neoprene", love:"Finally — touch through thick gloves" },
+      { id:"B6", name:"Stylus-EMR", fam:"B", prod:"products/product-B6-stylus-emr.png", life:"lifestyle/life-B6-stylus-emr.png", how:"Sub-mm tethered stylus", love:"Precision work, underwater" },
+      { id:"B7", name:"Lamb-Wave", fam:"B", prod:"products/product-B7-lamb-wave.png", life:"lifestyle/life-B7-lamb-wave.png", how:"Bare-glass acoustic touch", love:"Optics first — shooters love it" },
+      { id:"B8", name:"Resistive-Hard", fam:"B", prod:"products/product-B8-resistive-hard.png", life:"lifestyle/life-B8-resistive-hard.png", how:"Physical contact sensing", love:"Reliable enough to trust on vacation" },
+      { id:"B9", name:"Gap-Cap", fam:"B", prod:"products/product-B9-gap-cap.png", life:"lifestyle/life-B9-gap-cap.png", how:"Dry-side gap capacitance", love:"Still alive when you need it" },
+      { id:"C10", name:"Crownpad", fam:"C", prod:"products/product-C10-crownpad.png", life:"lifestyle/life-C10-crownpad.png", how:"Crown, hat, sealed keys", love:"Mittens-friendly control they trust" },
+      { id:"C11", name:"Tether-Puck", fam:"C", prod:"products/product-C11-tether-puck.png", life:"lifestyle/life-C11-tether-puck.png", how:"Wired thumbstick puck", love:"Hands free — still in control" },
+      { id:"C12", name:"Tilt-Cursor", fam:"C", prod:"products/product-C12-tilt-cursor.png", life:"lifestyle/life-C12-tilt-cursor.png", how:"Wrist IMU cursor", love:"Light enough to forget you’re wearing it" },
+      { id:"C13", name:"Voice-PTT", fam:"C", prod:"products/product-C13-voice-ptt.png", life:"lifestyle/life-C13-voice-ptt.png", how:"Bone-conduction PTT", love:"Loved by camera and tool operators" },
+      { id:"D14", name:"Rolltop", fam:"D", prod:"products/product-D14-rolltop.png", life:"lifestyle/life-D14-rolltop.png", how:"Fabric body, rigid window", love:"Disappears until you need it" },
+      { id:"D15", name:"Oilfill-100", fam:"D", prod:"products/product-D15-oilfill-100.png", life:"lifestyle/life-D15-oilfill-100.png", how:"Oil pressure compensation", love:"Trust at depths others can’t go" },
+      { id:"D16", name:"Floatline", fam:"D", prod:"products/product-D16-floatline.png", life:"lifestyle/life-D16-floatline.png", how:"Positive buoyancy collar", love:"Families stop panicking" },
+      { id:"D17", name:"Chestboard", fam:"D", prod:"products/product-D17-chestboard.png", life:"lifestyle/life-D17-chestboard.png", how:"MOLLE torso key panel", love:"Mission-ready and always reachable" },
+      { id:"D18", name:"Gauntlet", fam:"D", prod:"products/product-D18-gauntlet.png", life:"lifestyle/life-D18-gauntlet.png", how:"Wrist mount + compass", love:"Heading even if the phone dies" },
+    ];
+    const famName = { A: "A · Force-Sensed Rigid", B: "B · Alternative Sensing", C: "C · Control Surfaces", D: "D · Non-Rigid & Mission" };
+    let html = "";
+    let last = "";
+    for (const it of items) {
+      if (it.fam !== last) {
+        html += `<h2 class="fam">${famName[it.fam]}</h2>`;
+        last = it.fam;
+      }
+      html += `<div class="row">
+        <div class="shot"><img src="${it.prod}" alt="${it.id} product" loading="lazy" /><div class="meta"><strong>${it.id} · ${it.name}</strong><span>${it.how}</span></div></div>
+        <div class="life"><img src="${it.life}" alt="${it.id} in use" loading="lazy" /><div class="meta"><strong>In the wild</strong><div class="love">“${it.love}”</div></div></div>
+      </div>`;
+    }
+    document.getElementById("main").innerHTML = html;
+  </script>
+</body>
+</html>

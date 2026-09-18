@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 787 348" width="787" height="348">
+  <rect width="100%" height="100%" fill="#f4f1ea" />
+  <text x="20" y="18" font-size="12" font-weight="600" font-family="sans-serif" fill="#1a1a1a">D16 · FLOATLINE</text>
+  <text x="20" y="30" font-size="8" font-family="sans-serif" fill="#666">FRONT ELEVATION — ~2.2 px/mm · Nereid Rev A</text>
+  <rect x="40" y="36" width="418.00000000000006" height="242.00000000000003" fill="#fff" stroke="#1a1a1a" stroke-width="1.6" />
+  <rect x="86.20000000000002" y="80.00000000000001" width="325.6" height="154" fill="#e8ece8" stroke="#1a1a1a" stroke-width="1.1" />
+  <text x="249.00000000000003" y="157" text-anchor="middle" font-size="9" fill="#555" font-family="sans-serif">A1 core window</text>
+  
+        <circle cx="94.20000000000002" cy="88.00000000000001" r="3.5" fill="none" stroke="#1a1a1a" />
+        <circle cx="403.80000000000007" cy="88.00000000000001" r="3.5" fill="none" stroke="#1a1a1a" />
+        <circle cx="94.20000000000002" cy="226" r="3.5" fill="none" stroke="#1a1a1a" />
+        <circle cx="403.80000000000007" cy="226" r="3.5" fill="none" stroke="#1a1a1a" />
+      
+  
+    <line x1="40" y1="278" x2="40" y2="292" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="458.00000000000006" y1="278" x2="458.00000000000006" y2="292" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="40" y1="292" x2="458.00000000000006" y2="292" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="249.00000000000003" y="304" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">190 mm</text>
+  
+  
+    <line x1="458.00000000000006" y1="36" x2="472.00000000000006" y2="36" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="458.00000000000006" y1="278" x2="472.00000000000006" y2="278" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="472.00000000000006" y1="36" x2="472.00000000000006" y2="278" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="480.00000000000006" y="161" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">110 mm</text>
+  
+  
+    <line x1="86.20000000000002" y1="80.00000000000001" x2="86.20000000000002" y2="70.00000000000001" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="411.80000000000007" y1="80.00000000000001" x2="411.80000000000007" y2="70.00000000000001" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="86.20000000000002" y1="70.00000000000001" x2="411.80000000000007" y2="70.00000000000001" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="249.00000000000006" y="66.00000000000001" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">AP 148 mm</text>
+  
+  <text x="528" y="30" font-size="9" font-weight="600" fill="#1a1a1a" font-family="sans-serif">SECTION STACK</text>
+  <rect x="528" y="46" width="99.00000000000001" height="8" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="635" y="53" fill="#333" font-size="9" font-family="sans-serif">Shell</text><rect x="528" y="54" width="99.00000000000001" height="4" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="635" y="59" fill="#333" font-size="9" font-family="sans-serif">Seal</text><rect x="528" y="58" width="99.00000000000001" height="9.9" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="635" y="65.95" fill="#333" font-size="9" font-family="sans-serif">Window 1.5mm</text><rect x="528" y="67.9" width="99.00000000000001" height="14" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="635" y="77.9" fill="#333" font-size="9" font-family="sans-serif">Air pocket</text><rect x="528" y="81.9" width="99.00000000000001" height="18" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="635" y="93.9" fill="#333" font-size="9" font-family="sans-serif">Phone</text><rect x="528" y="99.9" width="99.00000000000001" height="10" fill="none" stroke="#1a1a1a" stroke-width="1.1" />
+        <text x="635" y="107.9" fill="#333" font-size="9" font-family="sans-serif">Back</text>
+  
+    <line x1="528" y1="46" x2="528" y2="38" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="627" y1="46" x2="627" y2="38" stroke="#5a6a4a" stroke-width="0.6" />
+    <line x1="528" y1="38" x2="627" y2="38" stroke="#5a6a4a" stroke-width="0.8" />
+    <text x="577.5" y="34" fill="#3d4a32" font-size="9" font-family="sans-serif" text-anchor="middle">45 mm H</text>
+  
+  <text x="20" y="320" font-size="8" fill="#444" font-family="sans-serif">Shell: A1 Mg core + syntactic foam · Mount: A1</text>
+  <text x="20" y="332" font-size="8" fill="#444" font-family="sans-serif">Depth 6 m · 168 g · Load cell</text>
+  <rect x="637" y="306" width="130" height="30" fill="none" stroke="#1a1a1a" stroke-width="0.8" />
+  <text x="647" y="320" font-size="8" fill="#1a1a1a" font-family="sans-serif">NEREID PROGRAM</text>
+  <text x="647" y="332" font-size="8" fill="#1a1a1a" font-family="sans-serif">DWG D16-00 · REV A</text>
+</svg>
